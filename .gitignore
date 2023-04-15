@@ -1,5 +1,12 @@
+/.vscode/
+/package-lock.json
+
 */node_modules
-/.vscode/*
 */.env
-/API/dist/*
 */package-lock.json
+
+/API/dist/
+
+/SpotifyTracker/.angular
+
+/MusicTracker
