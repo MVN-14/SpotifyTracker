@@ -8,6 +8,7 @@ import { UserProfile } from '../../models/UserProfile';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  
   userProfile: UserProfile = new UserProfile();
   photoIndex: number = 0;
 
@@ -25,5 +26,18 @@ export class UserProfileComponent implements OnInit {
 
   getPhotoUrl(): string {
     return this.userProfile.images[this.photoIndex].url ?? "";
+  }
+
+  getRowData(): {label: string, value: string}[] {
+    return [
+      { label: "Email", value: this.userProfile.email },
+      { label: "Country", value: this.userProfile.country },
+      { label: "Followers", value: this.userProfile.followers.total.toString() },
+      { label: "Profile Link", value: this.userProfile.href },
+      { label: "ID", value: this.userProfile.id },
+      { label: "Subscription", value: this.userProfile.product },
+      { label: "Type", value: this.userProfile.type },
+      { label: "URI", value: this.userProfile.uri }
+    ];
   }
 }

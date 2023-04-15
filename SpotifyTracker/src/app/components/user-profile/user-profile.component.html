@@ -1,45 +1,11 @@
-<div class="container text-center pt-3">
-  <img width="150" src={{getPhotoUrl()}}>
-  <h1 class="py-3">{{userProfile.display_name}}'s Profile</h1>
+<div class="container pt-3">
+  <div class="row align-items-center mb-2">
+    <img class="col-3" src={{getPhotoUrl()}}>
+    <h1 class="col py-3">{{userProfile.display_name}}'s Profile</h1>
+  </div>
   
-  <div class="row">
-    <h3 class="col-4 offset-2">Email</h3>
-    <h4 class="col-4">{{userProfile.email}}</h4>
-  </div>
-
-  <div class="row">
-    <h3 class="col-4 offset-2">Country</h3>
-    <h4 class="col-4">{{userProfile.country}}</h4>
-  </div>
-
-  <div class="row">
-    <h3 class="col-4 offset-2">Followers</h3>
-    <h4 class="col-4">{{userProfile.followers.total}}</h4>
-  </div>
-
-  <div class="row">
-    <h3 class="col-4 offset-2">Profile Link</h3>
-    <a class="col-4 link-warning" href={{userProfile.href}}><h4>{{userProfile.href}}</h4></a>
-  </div>
-
-  <div class="row">
-    <h3 class="col-4 offset-2">ID</h3>
-    <h4 class="col-4">{{userProfile.id}}</h4>
-  </div>
-  <div class="row">
-    <h3 class="col-4 offset-2">Subscription</h3>
-    <h4 class="col-4">{{userProfile.product}}</h4>
-  </div>
-  <div class="row">
-    <h3 class="col-4 offset-2">Type</h3>
-    <h4 class="col-4">{{userProfile.type}}</h4>
-  </div>
-  <div class="row">
-    <h3 class="col-4 offset-2">URI</h3>
-    <h4 class="col-4">{{userProfile.uri}}</h4>
+  <div class="form-group row" *ngFor="let row of getRowData()">
+    <label class="col-form-label-lg col-3 font-weight-bold p-0 m-0">{{row.label}}</label>
+    <label class="col-form-label-lg col-4 p-0 m-0">{{row.value}}</label>
   </div>
 </div>
-<!-- <div class="container">
-
-</div> -->
-<!-- {{getUserJsonString()}} -->
