@@ -1,2 +1,5 @@
 */node_modules
-.vscode\*
+/.vscode/*
+*/.env
+/API/dist/*
+*/package-lock.json
