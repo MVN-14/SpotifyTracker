@@ -22,3 +22,20 @@ export async function getClientRedirectUrl(code: string): Promise<string> {
 
   return `${APP_URL}/login/?access_token=${encodeURI(response.data.access_token)}&refresh_token=${encodeURI(response.data.refresh_token)}`
 }
+
+export async function getRefreshData(refresh_token: string) {
+  const response = await axios({
+    method: "post",
+    url: TOKEN_URL,
+    headers: {
+      "Authorization": `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    data: {
+      grant_type: 'refresh_token',
+      refresh_token: refresh_token,
+    }
+  });
+
+  return {access_token: response.data.access_token, refresh_token: response.data.refresh_token};
+}

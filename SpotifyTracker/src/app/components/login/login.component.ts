@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import axios from 'axios';
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'login',
@@ -9,12 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  accessToken: string = "";
-  refreshToken: string = "";
-
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private sAuth: AuthService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -29,8 +27,8 @@ export class LoginComponent implements OnInit {
   redirectToLogin(): void {
     console.log("test");
     
-    this.http.get<{data: string}>("http://localhost:8008/login/url").subscribe(({data}) => {
+    this.sAuth.getLoginUrl().subscribe(({data}) => {
       window.location.href = data;
-    })
+    });
   }
 }

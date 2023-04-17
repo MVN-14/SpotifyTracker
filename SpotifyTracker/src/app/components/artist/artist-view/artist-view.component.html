@@ -1,0 +1,35 @@
+<div class="container-fluid p-5">
+  <div class="card bg-dark text-white">
+    
+    <div class="card-header text-center">
+      <h2>{{artist.name}}</h2>
+    </div>
+
+    <div class="card-body text-center p-5">   
+      <div class="row pb-5">
+        <div class="col-5">
+          <img width="550" [src]="artist.images[0].url">
+        </div>
+        
+        <div class="col pt-2">
+          <div class="row border border-secondary">
+            <top-tracks [topTracks]="topTracks"></top-tracks>
+          </div>
+        </div>   
+
+      </div>
+
+      <div class="row">
+        <div class="col border border-secondary">
+          <related-artists></related-artists>
+        </div>
+        <div class="col border border-secondary">
+          <artist-albums [albums]="albums.items"></artist-albums>
+        </div>
+      </div>
+
+      <div class="row">
+      </div>
+    </div>
+  </div>
+</div>>

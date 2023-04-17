@@ -1,8 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors'
-import axios from 'axios';
-import { APP_URL, CLIENT_ID, CLIENT_SECRET, PORT, REDIRECT_URI, TOKEN_URL } from './config';
-import { getAuthorizationUrl, getClientRedirectUrl } from './login';
+import { PORT } from './config';
+import { getAuthorizationUrl, getClientRedirectUrl, getRefreshData } from './login';
 
 const app: Express = express();
 
@@ -12,6 +11,12 @@ app.get('/login/url', (_, res: Response): void => {
   console.log("/login/url");
   res.send({data: getAuthorizationUrl()}); 
 });
+
+app.get("/login/refresh/:refresh_token", (req: Request, res: Response): void => {
+  console.log("login/refresh");
+  const code: string = req.params.refresh_token;
+  res.send(getRefreshData(code));
+})
 
 app.get('/login/callback', async (req: Request, res: Response): Promise<void> => {
   console.log("/login/callback");

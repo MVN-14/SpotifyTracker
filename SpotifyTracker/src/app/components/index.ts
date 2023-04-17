@@ -1,0 +1,14 @@
+export { AlbumTableComponent } from "./album/album-table/album-table.component";
+export { ArtistAlbumsComponent } from "./artist/artist-albums/artist-albums.component";
+export { ArtistTableComponent } from "./artist/artist-table/artist-table.component";
+export { ArtistViewComponent } from "./artist/artist-view/artist-view.component";
+export { HomeComponent } from "./home/home.component";
+export { LoginComponent } from "./login/login.component";
+export { NavbarComponent } from "./navbar/navbar.component";
+export { RecentComponent } from "./user/recent/recent.component";
+export { RelatedArtistsComponent } from "./artist/related-artists/related-artists.component";
+export { TopItemsComponent } from "./user/top-items/top-items.component";
+export { TopTracksComponent } from "./artist/top-tracks/top-tracks.component"; 
+export { TrackTableComponent } from "./track/track-table/track-table.component";
+export { TrackViewComponent } from "./track/track-view/track-view.component";
+export { UserProfileComponent } from "./user/user-profile/user-profile.component";

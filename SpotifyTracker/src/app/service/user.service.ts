@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { UserProfile } from '../models/UserProfile';
+import { UserProfile, TopItems, Artist, Track } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +19,21 @@ export class UserService {
     });
   }
 
-  // getTopArtists(): Observable<Artist> {
+  getTopArtists(): Observable<TopItems<Artist>> {
+    return this.http.get<TopItems<Artist>>(
+      `https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50&offset=0`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
+        }
+      });
+  }
 
-  // }
+  getTopTracks(): Observable<TopItems<Track>> {
+    return this.http.get<TopItems<Track>>(
+      `https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50&offset=0`, {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
+      }
+    });
+  }
 }
