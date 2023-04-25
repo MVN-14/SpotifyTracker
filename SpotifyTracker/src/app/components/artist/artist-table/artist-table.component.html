@@ -1,26 +1,39 @@
-<table class="table table-dark table-striped">
-    <thead>
-      <tr>
-        <td><h2>#</h2></td>
-        <td></td>
-        <td><p>Artist</p></td>
-        <td><p>Genre</p></td>
-        <td><p>Popularity</p></td>
+<item-table
+  [columnNames]="getColumnNames()"
+  [tableRows]="getTableRows()"
+></item-table>
+<!-- <table class="table table-dark table-striped table-hover">
+  <thead>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><p>Artist</p></td>
+      <td><p>Genre</p></td>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let artist of artists; let i = index" [attr.data-index]="i" style="cursor: pointer;"
-    (click)="redirectToArtist(artist)">
-      <td><h3>{{i + 1}}</h3></td>
+    <tr
+      *ngFor="let artist of artists; let i = index"
+      [attr.data-index]="i"
+      style="cursor: pointer"
+      (click)="redirectToArtist(artist)"
+    >
       <td>
-        <a href="{{artist.external_urls.spotify}}">Listen</a>
+        <img
+          class="image-fluid"
+          src="{{ artist.images[0].url }}"
+          width="50px"
+        />
       </td>
-      <td class="d-flex align-items-center">
-        <img src={{artist.images[0].url}} width="{{size === 'small' ? '40' : '75'}}" height="{{size === 'small' ? '40' : '75'}}">
-        <p class="ms-3">{{artist.name}}</p>
+      <td>
+        <a href="{{ artist.external_urls.spotify }}">Listen</a>
       </td>
-      <td><p>{{artist.getGenreString()}}</p></td>
-      <td><p>{{artist.popularity}}</p></td>
+      <td>
+        <p class="ms-2">{{ artist.name }}</p>
+      </td>
+      <td>
+        <p>{{ artist.getGenreString() }}</p>
+      </td>
     </tr>
   </tbody>
-</table>
+</table> -->

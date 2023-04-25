@@ -1,22 +1,61 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/home">Spotify Tracker</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand text-green" href="/home">Spotify Tracker </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <a #home class="nav-link" aria-current="page" href="/home">Home</a>
-        <a #profile class="nav-link" aria-current="page" href="/profile">Profile</a>
-        <a #topItems class="nav-link" aria-current="page" href="/top-items">Top Items</a>
-        <a #recent class="nav-link" aria-current="page" href="/recent">Recent</a>
+        <a
+          #home
+          [ngClass]="{ active: activeNav == 'home' }"
+          class="nav-link"
+          aria-current="page"
+          href="/home"
+          >Home</a
+        >
+        <a
+          #profile
+          [ngClass]="{ active: activeNav == 'profile' }"
+          class="nav-link"
+          aria-current="page"
+          href="/profile"
+          >Profile</a
+        >
+        <a
+          #topItems
+          [ngClass]="{ active: activeNav == 'top-items' }"
+          class="nav-link"
+          aria-current="page"
+          href="/top-items"
+          >Top Items</a
+        >
+        <a
+          #recent
+          [ngClass]="{ active: activeNav == 'recent' }"
+          class="nav-link"
+          aria-current="page"
+          href="/recent"
+          >Recent</a
+        >
+        <a
+          #recent
+          [ngClass]="{ active: activeNav == 'login' }"
+          class="nav-link"
+          aria-current="page"
+          href="/login"
+          >Login</a
+        >
       </ul>
-    </div>
-    <button *ngIf="!isLoggedIn()" class="btn btn-outline-success" (click)="onLoginClicked()">Login</button>
-    <div *ngIf="isLoggedIn()" class="d-flex align-items-center">
-      <label>{{displayName}}</label>
-      <img class="ms-2" width="40" src="{{userProfilePhotoUrl}}" alt="Profile Photo">
     </div>
   </div>
 </nav>

@@ -1,5 +1,5 @@
-import { SimplifiedArtist } from "./SimplifiedArtist";
-import { Followers, Images } from "./index";
+import { SimplifiedArtist } from './SimplifiedArtist';
+import { Followers, Images, TableRow } from './index';
 
 export class Artist extends SimplifiedArtist {
   followers: Followers = new Followers();
@@ -9,12 +9,12 @@ export class Artist extends SimplifiedArtist {
 
   public static fromJSON(data: any): Artist {
     const artist: Artist = new Artist();
-    
+
     artist.followers = data.followers;
     artist.genres = data.genres;
     artist.images = data.images;
     artist.popularity = data.popularity;
-    
+
     // SimplifiedArtist properties
     artist.external_urls = data.external_urls;
     artist.href = data.href;
@@ -27,31 +27,53 @@ export class Artist extends SimplifiedArtist {
   }
 
   getGenreString(): string {
-    if(!this.genres)
-      return "N/A";
+    if (!this.genres) return 'N/A';
 
-    let genresString: string = "";
+    let genresString: string = '';
     this.genres.forEach((genre, idx) => {
       genresString += genre;
       if (idx !== this.genres.length - 1) {
-        genresString += ", ";
+        genresString += ', ';
       }
     });
     return genresString;
   }
 
   getGenreSeed(): string {
-    if(this.genres.length <= 5)
-      return this.getGenreString().replace(/\s/g, "");
+    if (this.genres.length <= 5)
+      return this.getGenreString().replace(/\s/g, '');
 
     const genres: string[] = this.genres.slice(0, 5);
-    let genreSeed : string = "";
+    let genreSeed: string = '';
     genres.forEach((genre, idx) => {
       genreSeed += genre;
       if (idx !== this.genres.length - 1) {
-        genreSeed += ",";
+        genreSeed += ',';
       }
     });
     return genreSeed;
+  }
+
+  static getTableColumnNames(): string[] {
+    return ['', 'Artist', 'Followers'];
+  }
+
+  public getTableRow(): TableRow {
+    return {
+      data: [
+        {
+          element: 'img',
+          src: this.images[0].url,
+        },
+        {
+          element: 'p',
+          text: this.name,
+        },
+        {
+          element: 'p',
+          text: '' + this.followers.total,
+        },
+      ],
+    };
   }
 }

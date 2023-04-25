@@ -1,39 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { UserProfile, TopItems, Artist, Track } from '../models';
+import { UserProfile, TopItems, Artist, Track, ArtistsPaged } from '../models';
+import { GenericRequestSerice } from './generic.request.service';
+import { map, shareReplay } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  constructor(private sRequest: GenericRequestSerice) {}
 
-
-  constructor(private http: HttpClient) { }
-
-  getCurrentUserProfile(): Observable<UserProfile> {
-    return this.http.get<UserProfile>("https://api.spotify.com/v1/me", {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
-      }
-    });
+  public getCurrentUserProfile(): Observable<UserProfile> {
+    return this.sRequest.get<UserProfile>('https://api.spotify.com/v1/me').pipe(
+      map((userProfile) => {
+        return { ...userProfile, photo_url: userProfile.images[0].url };
+      })
+    );
   }
 
-  getTopArtists(): Observable<TopItems<Artist>> {
-    return this.http.get<TopItems<Artist>>(
-      `https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50&offset=0`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
-        }
-      });
+  public getTopArtists(): Observable<TopItems<Artist>> {
+    return this.sRequest.get<TopItems<Artist>>(
+      'https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50&offset=0'
+    );
   }
 
-  getTopTracks(): Observable<TopItems<Track>> {
-    return this.http.get<TopItems<Track>>(
-      `https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50&offset=0`, {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
-      }
-    });
+  public getTopTracks(): Observable<TopItems<Track>> {
+    return this.sRequest.get<TopItems<Track>>(
+      'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50&offset=0'
+    );
+  }
+
+  public getFollowedArtists(): Observable<{ artists: ArtistsPaged }> {
+    return this.sRequest.get<{ artists: ArtistsPaged }>(
+      'https://api.spotify.com/v1/me/following?type=artist'
+    );
   }
 }

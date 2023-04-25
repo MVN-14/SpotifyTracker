@@ -1,8 +1,5 @@
-.accordion-body, .accordion-header, .accordion-button {
-  background-color:#212529;
-}
+@import "../../../../styles.scss";
 
-.scrolled {
-  overflow-y: scroll;
-  height: 70vh;
+.btn-success {
+  background-color: $spotify-green;
 }

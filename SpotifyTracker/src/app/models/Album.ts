@@ -1,27 +1,36 @@
-import { SimplifiedArtist } from "./SimplifiedArtist";
-import { ExternalUrls, Images, Restrictions, Copyrights, ExternalIDs, Artist } from "./index";
+import { SimplifiedArtist } from './SimplifiedArtist';
+import {
+  ExternalUrls,
+  Images,
+  Restrictions,
+  Copyrights,
+  ExternalIDs,
+  Artist,
+  Track,
+} from './index';
 
 export class Album {
-  album_type: string = "";
+  album_type: string = '';
   total_tracks: number = 0;
   available_markets: string[] = [];
   external_urls: ExternalUrls = new ExternalUrls();
-  href: string = "";
-  id: string = "";
+  href: string = '';
+  id: string = '';
   images: Images[] = [];
-  name: string = "";
-  release_date: string = "";
-  release_date_precision: string = "";
+  name: string = '';
+  release_date: string = '';
+  release_date_precision: string = '';
   restrictions: Restrictions = new Restrictions();
-  type: string = "";
-  uri: string = "";
-  copyrights: Copyrights = new Copyrights();
+  type: string = '';
+  uri: string = '';
+  copyrights: Copyrights[] = [];
   external_ids: ExternalIDs = new ExternalIDs();
   genres: string[] = [];
-  label: string = "";
+  label: string = '';
   popularity: number = 0;
-  album_group: string = "";
+  album_group: string = '';
   artists: SimplifiedArtist[] = [];
+  tracks: Track[] = [];
 
   public static fromJSON(data: any) {
     const album: Album = new Album();
@@ -45,32 +54,33 @@ export class Album {
     album.popularity = data.popularity;
     album.album_group = data.album_group;
     album.artists = data.artists.map((artist: any) => Artist.fromJSON(artist));
-    return album
+    album.tracks = data?.tracks?.items?.map((track: any) =>
+      Track.fromJSON(track)
+    );
+    return album;
   }
 
   getGenreString(): string {
-    if (!this.genres)
-      return "N/A";
+    if (!this.genres?.length) return 'N/A';
 
-    let genresString: string = "";
+    let genresString: string = '';
     this.genres.forEach((genre, idx) => {
-      genresString += (genre);
+      genresString += genre;
       if (idx !== this.genres.length - 1) {
-        genresString += ", ";
+        genresString += ', ';
       }
     });
     return genresString;
   }
 
   getArtistString(): string {
-    let artistsString: string = "";
+    let artistsString: string = '';
     this.artists.forEach((artist, idx) => {
       artistsString += artist.name;
       if (idx !== this.artists.length - 1) {
-        artistsString += ", ";
+        artistsString += ', ';
       }
     });
     return artistsString;
   }
-
 }

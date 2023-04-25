@@ -1,9 +1,14 @@
+@import "../styles.scss";
+
 .routerContainer {
-  background-color: darkcyan;
-  height: 100vh;
-  color: black;
+  background-color: $spotify-green;
 }
 
 thead tr td p {
   font-size: 30px;
+}
+
+.scrolled {
+  overflow-y: scroll;
+  height: 50vh;
 }

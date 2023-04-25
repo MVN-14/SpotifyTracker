@@ -1,24 +1,19 @@
-import { Followers } from "./index";
-import { Images } from "./Images";
+import { ExternalUrls, Followers } from './index';
+import { Image } from './Image';
 
-export class UserProfile {
-  country: string = "";
-  display_name: string = "";
-  email: string = "";
-  explicit_content: { filter_enabled: boolean, filter_locked: boolean } = { filter_enabled: false, filter_locked: false };
-  followers: Followers = new Followers();
-  href: string = "";
-  id: string = "";
-  images: Images[] = [];
-  product: string = "";
-  type: string = "";
-  uri: string = "";
-
-  getFollowers(): number {
-    return this.followers.total;
-  }
-
+export interface UserProfile {
+  country: string;
+  display_name: string;
+  email: string;
+  explicit_content: { filter_enabled: boolean; filter_locked: boolean };
+  followers: Followers;
+  href: string;
+  id: string;
+  images: Image[];
+  product: string;
+  type: string;
+  uri: string;
+  external_urls: ExternalUrls;
+  // added properties
+  photo_url: string;
 }
-
-
-

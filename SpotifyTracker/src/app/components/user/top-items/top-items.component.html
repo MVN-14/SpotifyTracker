@@ -1,26 +1,44 @@
 <div class="container-fluid p-5">
   <div class="card bg-dark text-white">
     <div class="card-header text-center">
-      <h3>Your Top {{showingTracks ? "Tracks" : "Artists"}}</h3>
+      <h2>Your Top {{ showingTracks ? "Tracks" : "Artists" }}</h2>
     </div>
     <div class="card-body">
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-          <input (change)="showingTracks = true" type="radio" class="btn-check" name="btnradio" id="tracksBtn" autocomplete="off" checked>
-          <label class="btn btn-success" for="tracksBtn">Tracks</label>
-          
-          <input (change)="showingTracks = false" type="radio" class="btn-check" name="btnradio" id="artistsBtn" autocomplete="off">
-          <label class="btn btn-success" for="artistsBtn">Artists</label>
-        </div>
+      <div
+        class="btn-group"
+        role="group"
+        aria-label="Basic radio toggle button group"
+      >
+        <input
+          (change)="showingTracks = true"
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="tracksBtn"
+          autocomplete="off"
+          checked
+        />
+        <label class="btn btn-success" for="tracksBtn">Tracks</label>
 
-        <div class="scrolled">
-          <div *ngIf="showingTracks">
-              <track-table [tracks]="topTracks.items"></track-table>
-          </div>
-          <div *ngIf="!showingTracks">
-            <artist-table [artists]="topArtists.items"></artist-table>
-          </div>
+        <input
+          (change)="showingTracks = false"
+          type="radio"
+          class="btn-check"
+          name="btnradio"
+          id="artistsBtn"
+          autocomplete="off"
+        />
+        <label class="btn btn-success" for="artistsBtn">Artists</label>
+      </div>
+
+      <div class="scrolled-70">
+        <div *ngIf="showingTracks">
+          <track-table [tracks]="topTracks.items"></track-table>
         </div>
+        <div *ngIf="!showingTracks">
+          <artist-table [artists]="topArtists.items"></artist-table>
+        </div>
+      </div>
     </div>
-
   </div>
 </div>

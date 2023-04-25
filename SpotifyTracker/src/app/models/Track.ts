@@ -58,6 +58,13 @@ export class Track {
     return genreString;
   }
 
+  getListenUrl(): string {
+    if(this.external_urls.spotify)
+      return this.external_urls.spotify;
+
+    return `https://open.spotify.com/track/${this.id}`;
+  }
+
   public static fromJSON(data: any): Track {
     const track: Track = new Track();
     track.album = data.album;

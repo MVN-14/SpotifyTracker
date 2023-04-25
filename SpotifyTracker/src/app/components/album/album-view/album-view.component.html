@@ -1,1 +1,64 @@
-<p>album-view works!</p>
+<div class="container-fluid p-5">
+  <div class="card bg-dark text-white">
+    <div class="card-header text-center">
+      <h2>{{ album.name }}</h2>
+    </div>
+
+    <div class="card-body text-center p-5">
+      <div class="row text-center">
+        <div class="col-5">
+          <img width="450" [src]="album.images[0].url" />
+        </div>
+
+        <div class="col">
+          <track-table
+            [tracks]="album.tracks"
+            [simplified]="true"
+          ></track-table>
+        </div>
+      </div>
+
+      <div class="row pt-5">
+        <div class="col-6">
+          <div class="row">
+            <label class="col-3 text-end">Artist:</label>
+            <a class="col text-start" href="/artist/{{ album.artists[0].id }}">
+              <p>{{ album.getArtistString() }}</p>
+            </a>
+          </div>
+
+          <div class="row">
+            <label class="col-3 text-end">Album Type:</label>
+            <p class="col text-start">{{ album.type }}</p>
+          </div>
+
+          <div class="row">
+            <label class="col-3 text-end">Listen on Spotify:</label>
+            <a class="col text-start" href="{{ album.external_urls.spotify }}"
+              ><p>{{ album.external_urls.spotify }}</p></a
+            >
+          </div>
+
+          <div class="row">
+            <label class="col-3 text-end">Release Date:</label>
+            <p class="col text-start">{{ album.release_date | date }}</p>
+          </div>
+
+          <div class="row">
+            <label class="col-3 text-end">Genres</label>
+            <p class="col text-start">{{ album.getGenreString() }}</p>
+          </div>
+
+          <div class="row">
+            <label class="col-3 text-end">Copyrights:</label>
+            <div class="col text-start">
+              <p *ngFor="let copyright of album.copyrights">
+                {{ copyright.type }} - {{ copyright.text }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

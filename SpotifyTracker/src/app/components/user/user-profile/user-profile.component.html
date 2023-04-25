@@ -1,11 +1,63 @@
-<div class="container pt-3">
-  <div class="row align-items-center mb-2">
-    <img class="col-3" src={{getPhotoUrl()}}>
-    <h1 class="col py-3">{{userProfile.display_name}}'s Profile</h1>
-  </div>
-  
-  <div class="form-group row" *ngFor="let row of getRowData()">
-    <label class="col-form-label-lg col-3 font-weight-bold p-0 m-0">{{row.label}}</label>
-    <label class="col-form-label-lg col-4 p-0 m-0">{{row.value}}</label>
+<div class="container-fluid p-5-xl pt-2">
+  <div class="card bg-dark text-white">
+    <div class="card-header text-center d-flex justify-content-center">
+      <img
+        class="me-2 thumbnail"
+        [src]="userProfile?.photo_url"
+        height="50rem"
+      />
+      <div>
+        <h2 class="text-center mb-0">{{ userProfile?.display_name }}</h2>
+        <a [href]="userProfile?.external_urls?.spotify">
+          View profile on spotify
+        </a>
+      </div>
+    </div>
+
+    <div class="card-body p-4-xl ms-4-xl">
+      <div class="row">
+        <div class="col pb-5">
+          <div class="row">
+            <label class="col-4 py-0 my-0">Followers:</label>
+            <p class="col py-0 my-0">{{ userProfile?.followers?.total }}</p>
+          </div>
+          <div class="row">
+            <label class="col-4 py-0 my-0">Country:</label>
+            <p class="col py-0 my-0">{{ userProfile?.country }}</p>
+          </div>
+          <div class="row">
+            <label class="col-4 py-0 my-0">Plan:</label>
+            <p class="col py-0 my-0">{{ userProfile?.product }}</p>
+          </div>
+          <div class="collapse">
+            <div class="row">
+              <label class="col-4 py-0 my-0">User ID:</label>
+              <p class="col py-0 my-0">{{ userProfile?.id }}</p>
+            </div>
+            <div class="row">
+              <label class="col-4 py-0 my-0">Explicit:</label>
+              <p class="col py-0 my-0">
+                {{
+                  userProfile?.explicit_content?.filter_enabled
+                    ? "Disabled"
+                    : "Enabled"
+                }}
+              </p>
+            </div>
+            <div class="row">
+              <label class="col-4 py-0 my-0">Email:</label>
+              <p class="col py-0 my-0">{{ userProfile?.email }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col text-center">
+          <h2 class="pb-2">Your Followed Artists</h2>
+          <div *ngIf="artistsPaged?.items" class="scrolled-50">
+            <artist-table [artists]="artistsPaged?.items"></artist-table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,27 @@
+<table class="table table-dark table-striped table-hover">
+  <thead>
+    <tr>
+      <td *ngFor="let columName of columnNames">
+        {{ columName }}
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tableRow of tableRows" (click)="(onClick)">
+      <td
+        *ngFor="let tableData of tableRow.data"
+        [ngSwitch]="tableData.element"
+        class="align-middle"
+      >
+        <img
+          class="align-left"
+          *ngSwitchCase="'img'"
+          [src]="tableData.src"
+          height="50px"
+        />
+        <a *ngSwitchCase="'a'" [href]="tableData.href">{{ tableData.text }}</a>
+        <p *ngSwitchCase="'p'">{{ tableData.text }}</p>
+      </td>
+    </tr>
+  </tbody>
+</table>

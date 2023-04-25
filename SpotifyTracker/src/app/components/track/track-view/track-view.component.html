@@ -1,42 +1,55 @@
 <div class="container-fluid p-5">
-  <div class="card bg-dark text-white" >
-    <div class="card-header text-center"><h2>{{track.name}}</h2></div>
+  <div class="card bg-dark text-white">
+    <div class="card-header text-center">
+      <h2>Track - {{ track.name }}</h2>
+    </div>
     <div class="card-body text-center p-5">
       <div class="row text-center">
         <div class="col-5">
-          <img *ngIf="track.getAlbumPhotoUrl()" width="450" [src]="track.getAlbumPhotoUrl()">
+          <img
+            *ngIf="track.getAlbumPhotoUrl()"
+            width="450"
+            [src]="track.getAlbumPhotoUrl()"
+          />
         </div>
         <div class="col">
-          <div class="row">
-            <label class="col-2 text-end">Artist:</label>  
-            <a class="col text-start" href="/artist/{{track.artists[0].id}}"><p>{{track.getArtistString()}}</p></a>
-          </div>
-          <div class="row">
-            <label class="col-2 text-end">Album:</label>
-            <a class="col text-start" href=""><p>{{track.album.name}}</p></a>
-          </div>          
-          <div class="row">
-            <label class="col-2 text-end">Length:</label>
-            <p class="col text-start">{{track.duration_ms | date: "mm:ss"}}</p>
-          </div>          
-          <div class="row">
-            <label class="col-2 text-end">Explicit:</label>
-            <p class="col text-start">{{track.explicit ? "Yes" : "No"}}</p>
-          </div>
-          <div class="row">
-            <label class="col-2 text-end">Popularity:</label>
-            <p class="col text-start">{{track.popularity}}</p>
-          </div>
-          <div class="row">
-            <label class="col-2 text-end">Track Number:</label>
-            <p class="col text-start">{{track.track_number}}</p>
-          </div>
-        </div>      
+          <track-recommendations [track]="track"></track-recommendations>
+        </div>
       </div>
 
-      <div class="row p-5">
-        <track-recommendations [track]="track"></track-recommendations>
+      <div class="col">
+        <div class="row">
+          <label class="col-2 text-end">Artist:</label>
+          <a class="col text-start" href="/artist/{{ track.artists[0].id }}"
+            ><p>{{ track.getArtistString() }}</p></a
+          >
+        </div>
+        <div class="row">
+          <label class="col-2 text-end">Album:</label>
+          <a class="col text-start" href="/album/{{ track.album.id }}"
+            ><p>{{ track.album.name }}</p></a
+          >
+        </div>
+        <div class="row">
+          <label class="col-2 text-end">Length:</label>
+          <p class="col text-start">
+            {{ track.duration_ms | date : "mm:ss" }}
+          </p>
+        </div>
+        <div class="row">
+          <label class="col-2 text-end">Explicit:</label>
+          <p class="col text-start">{{ track.explicit ? "Yes" : "No" }}</p>
+        </div>
+        <div class="row">
+          <label class="col-2 text-end">Popularity:</label>
+          <p class="col text-start">{{ track.popularity }}</p>
+        </div>
+        <div class="row">
+          <label class="col-2 text-end">Track Number:</label>
+          <p class="col text-start">{{ track.track_number }}</p>
+        </div>
       </div>
     </div>
   </div>
-</div>>
+</div>
+>
