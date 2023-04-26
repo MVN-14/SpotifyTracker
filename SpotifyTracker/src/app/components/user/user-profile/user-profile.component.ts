@@ -11,6 +11,7 @@ import { Artist, ArtistsPaged, UserProfile } from 'src/app/models';
 export class UserProfileComponent implements OnInit {
   userProfile?: UserProfile;
   artistsPaged?: ArtistsPaged;
+  expanded: boolean = true;
 
   constructor(private sUser: UserService) {}
 

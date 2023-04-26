@@ -1,11 +1,7 @@
 <div class="container-fluid p-5-xl pt-2">
-  <div class="card bg-dark text-white">
-    <div class="card-header text-center d-flex justify-content-center">
-      <img
-        class="me-2 thumbnail"
-        [src]="userProfile?.photo_url"
-        height="50rem"
-      />
+  <div class="row text-white pt-1">
+    <div class="text-white d-flex justify-content-center">
+      <img class="me-2 rounded" [src]="userProfile?.photo_url" height="50rem" />
       <div>
         <h2 class="text-center mb-0">{{ userProfile?.display_name }}</h2>
         <a [href]="userProfile?.external_urls?.spotify">
@@ -13,49 +9,72 @@
         </a>
       </div>
     </div>
-
-    <div class="card-body p-4-xl ms-4-xl">
-      <div class="row">
-        <div class="col pb-5">
-          <div class="row">
-            <label class="col-4 py-0 my-0">Followers:</label>
-            <p class="col py-0 my-0">{{ userProfile?.followers?.total }}</p>
-          </div>
-          <div class="row">
-            <label class="col-4 py-0 my-0">Country:</label>
-            <p class="col py-0 my-0">{{ userProfile?.country }}</p>
-          </div>
-          <div class="row">
-            <label class="col-4 py-0 my-0">Plan:</label>
-            <p class="col py-0 my-0">{{ userProfile?.product }}</p>
-          </div>
-          <div class="collapse">
-            <div class="row">
-              <label class="col-4 py-0 my-0">User ID:</label>
-              <p class="col py-0 my-0">{{ userProfile?.id }}</p>
-            </div>
-            <div class="row">
-              <label class="col-4 py-0 my-0">Explicit:</label>
-              <p class="col py-0 my-0">
-                {{
-                  userProfile?.explicit_content?.filter_enabled
-                    ? "Disabled"
-                    : "Enabled"
-                }}
-              </p>
-            </div>
-            <div class="row">
-              <label class="col-4 py-0 my-0">Email:</label>
-              <p class="col py-0 my-0">{{ userProfile?.email }}</p>
-            </div>
-          </div>
+    <div class="col p-3">
+      <div id="extendedDetails">
+        <div class="row">
+          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
+            >Followers:</label
+          >
+          <p class="col py-0 my-0">{{ userProfile?.followers?.total }}</p>
+        </div>
+        <div class="row">
+          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
+            >Country:</label
+          >
+          <p class="col py-0 my-0">{{ userProfile?.country }}</p>
+        </div>
+        <div class="row">
+          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
+            >Plan:</label
+          >
+          <p class="col py-0 my-0">{{ userProfile?.product }}</p>
         </div>
 
-        <div class="col text-center">
-          <h2 class="pb-2">Your Followed Artists</h2>
-          <div *ngIf="artistsPaged?.items" class="scrolled-50">
-            <artist-table [artists]="artistsPaged?.items"></artist-table>
-          </div>
+        <div class="row">
+          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
+            >User ID:</label
+          >
+          <p class="col py-0 my-0">{{ userProfile?.id }}</p>
+        </div>
+        <div class="row">
+          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
+            >Explicit:</label
+          >
+          <p class="col py-0 my-0">
+            {{
+              userProfile?.explicit_content?.filter_enabled
+                ? "Disabled"
+                : "Enabled"
+            }}
+          </p>
+        </div>
+        <div class="row">
+          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
+            >Email:</label
+          >
+          <p class="col py-0 my-0">{{ userProfile?.email }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <a
+          class="offset-3 offset-sm-2 offset-lg-1 col"
+          href="#extendedDetails"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#extendedDetails"
+          aria-expanded="false"
+          aria-controls="extendedDetails"
+          (click)="expanded = !expanded"
+        >
+          {{ expanded ? "hide profile" : "show profile" }}
+        </a>
+      </div>
+
+      <h2 class="text-center p-0">Your Followed Artists</h2>
+
+      <div class="col text-center">
+        <div *ngIf="artistsPaged?.items" class="">
+          <artist-table [artists]="artistsPaged?.items"></artist-table>
         </div>
       </div>
     </div>

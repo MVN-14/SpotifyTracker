@@ -10,32 +10,15 @@ export class ArtistTableComponent {
   @Input() artists?: Artist[];
   @Input() size: string = 'large';
 
-  tableRows: TableRow[] = [
-    {
-      data: [
-        {
-          element: 'a',
-          text: 'test link',
-          href: '#',
-        },
-        {
-          element: 'a',
-          text: 'test link',
-          href: '#',
-        },
-      ],
-    },
-  ];
-
-  getColumnNames(): string[] {
+  protected getColumnNames(): string[] {
     return Artist.getTableColumnNames();
   }
 
-  getTableRows(): TableRow[] {
+  protected getTableRows(): TableRow[] {
     return this.artists?.map((artist) => artist.getTableRow()) ?? [];
   }
 
-  redirectToArtist(artist: Artist): void {
+  protected redirectToArtist(artist: Artist): void {
     window.location.href = `artist/${artist.id}`;
   }
 }

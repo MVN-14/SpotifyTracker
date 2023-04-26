@@ -8,5 +8,10 @@ import { TableRow } from 'src/app/models';
 export class ItemTableComponent {
   @Input() columnNames?: string[];
   @Input() tableRows?: TableRow[];
-  @Input() onClick?: () => void;
+
+  protected onClick(tableRow: TableRow): void {
+    if (tableRow.href) {
+      window.location.href = tableRow.href;
+    }
+  }
 }
