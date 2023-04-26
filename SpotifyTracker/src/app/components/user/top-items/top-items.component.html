@@ -30,15 +30,31 @@
           >Artists</label
         >
       </div>
+      <div class="pt-2 row">
+        <div
+          class="col-8 col-sm-6 offset-sm-3 col-md-4 col-xl-2 offset-xl-5 offset-md-4 offset-2"
+        >
+          <select class="form-select" (change)="onRangeChange($event)">
+            <option selected value="short_term">Short Term</option>
+            <option value="medium_term">Medium Term</option>
+            <option value="long_term">Long Term</option>
+          </select>
+        </div>
+      </div>
     </div>
   </div>
-
   <div class="pt-3 px-md-5">
     <div *ngIf="showingTracks">
-      <track-table [tracks]="topTracks.items"></track-table>
+      <track-table
+        *ngIf="topTracks$ | async as tracks"
+        [tracks]="tracks"
+      ></track-table>
     </div>
     <div *ngIf="!showingTracks">
-      <artist-table [artists]="topArtists.items"></artist-table>
+      <artist-table
+        *ngIf="topArtists$ | async as artists"
+        [artists]="artists"
+      ></artist-table>
     </div>
   </div>
 </div>

@@ -8,7 +8,6 @@ import { TableRow, Track } from 'src/app/models';
 })
 export class TrackTableComponent {
   @Input() tracks: Track[] = [];
-  @Input() size: string = 'large';
   @Input() simplified: boolean = false;
 
   protected getColumnNames(): string[] {

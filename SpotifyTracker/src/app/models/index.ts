@@ -17,5 +17,6 @@ export { SimplifiedArtist } from './SimplifiedArtist';
 export { TableRow } from './TableRow';
 export { Track } from './Track';
 export { TrackContext } from './TrackContext';
+export { TopArtist } from './TopArtist';
 export { TopItems } from './TopItems';
 export { UserProfile } from './UserProfile';

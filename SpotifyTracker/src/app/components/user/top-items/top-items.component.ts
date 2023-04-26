@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, take } from 'rxjs';
-import { Artist, TopItems, Track } from 'src/app/models';
+import { Observable } from 'rxjs';
+import { TopArtist, Track } from 'src/app/models';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -10,32 +10,24 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class TopItemsComponent implements OnInit {
   showingTracks: boolean = true;
+  range: string = 'short_term';
 
-  topArtists: TopItems<Artist> = new TopItems<Artist>();
-  topArtists$?: Observable<TopItems<Artist>>;
-  topTracks: TopItems<Track> = new TopItems<Track>();
+  topArtists$?: Observable<TopArtist[]>;
+  topTracks$?: Observable<Track[]>;
 
   constructor(private sUser: UserService) {}
 
   ngOnInit(): void {
-    this.sUser
-      .getTopArtists()
-      .pipe(take(1))
-      .subscribe((topArtists) => {
-        this.topArtists = topArtists;
-        this.topArtists.items = topArtists.items.map<Artist>((artist) => {
-          return Artist.fromJSON(artist);
-        });
-      });
+    this.refreshSubscriptions();
+  }
 
-    this.sUser
-      .getTopTracks()
-      .pipe(take(1))
-      .subscribe((topTracks) => {
-        this.topTracks = topTracks;
-        this.topTracks.items = topTracks.items.map<Track>((track) => {
-          return Track.fromJSON(track);
-        });
-      });
+  protected onRangeChange(e: any): void {
+    this.range = e.target.value;
+    this.refreshSubscriptions();
+  }
+
+  protected refreshSubscriptions(): void {
+    this.topArtists$ = this.sUser.getTopArtists(this.range);
+    this.topTracks$ = this.sUser.getTopTracks(this.range);
   }
 }

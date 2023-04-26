@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Artist, TableRow } from '../../../models';
+import { Artist, TableRow, TopArtist } from '../../../models';
 
 @Component({
   selector: 'artist-table',
@@ -7,18 +7,18 @@ import { Artist, TableRow } from '../../../models';
   styleUrls: ['./artist-table.component.scss'],
 })
 export class ArtistTableComponent {
-  @Input() artists?: Artist[];
-  @Input() size: string = 'large';
+  @Input() artists?: Artist[] | TopArtist[];
 
   protected getColumnNames(): string[] {
+    if (!this.artists) return [];
+
+    if (this.artists[0] instanceof TopArtist) {
+      return TopArtist.GetTableColumnNames();
+    }
     return Artist.GetTableColumnNames();
   }
 
   protected getTableRows(): TableRow[] {
     return this.artists?.map((artist) => artist.getTableRow()) ?? [];
-  }
-
-  protected redirectToArtist(artist: Artist): void {
-    window.location.href = `artist/${artist.id}`;
   }
 }

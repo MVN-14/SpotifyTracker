@@ -1,4 +1,4 @@
-import { ExternalUrls } from './index';
+import { ExternalUrls, TableRow } from './index';
 
 export class SimplifiedArtist {
   external_urls: ExternalUrls = new ExternalUrls();

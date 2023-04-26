@@ -26,7 +26,11 @@ export class Artist extends SimplifiedArtist {
     return artist;
   }
 
-  getGenreString(): string {
+  public static GetTableColumnNames(): string[] {
+    return ['', 'Artist', 'Followers'];
+  }
+
+  public getGenreString(): string {
     if (!this.genres) return 'N/A';
 
     let genresString: string = '';
@@ -39,7 +43,7 @@ export class Artist extends SimplifiedArtist {
     return genresString;
   }
 
-  getGenreSeed(): string {
+  public getGenreSeed(): string {
     if (this.genres.length <= 5)
       return this.getGenreString().replace(/\s/g, '');
 
@@ -52,10 +56,6 @@ export class Artist extends SimplifiedArtist {
       }
     });
     return genreSeed;
-  }
-
-  public static GetTableColumnNames(): string[] {
-    return ['', 'Artist', 'Followers'];
   }
 
   public getTableRow(): TableRow {
@@ -71,10 +71,9 @@ export class Artist extends SimplifiedArtist {
         },
         {
           element: 'p',
-          text: '' + this.followers.total,
+          text: this.followers.total.toString(),
         },
       ],
-      href: `/artist/${this.id}`,
     };
   }
 }

@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { UserProfile, TopItems, Artist, Track, ArtistsPaged } from '../models';
+import {
+  UserProfile,
+  TopItems,
+  Track,
+  ArtistsPaged,
+  TopArtist,
+} from '../models';
 import { GenericRequestSerice } from './generic.request.service';
-import { map, shareReplay } from 'rxjs';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,16 +24,26 @@ export class UserService {
     );
   }
 
-  public getTopArtists(): Observable<TopItems<Artist>> {
-    return this.sRequest.get<TopItems<Artist>>(
-      'https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=50&offset=0'
-    );
+  public getTopArtists(range: string): Observable<TopArtist[]> {
+    return this.sRequest
+      .get<TopItems<TopArtist>>(
+        `https://api.spotify.com/v1/me/top/artists?time_range=${range}&limit=50&offset=0`
+      )
+      .pipe(
+        map((topItem) =>
+          topItem.items.map((artist) => TopArtist.fromJSON(artist))
+        )
+      );
   }
 
-  public getTopTracks(): Observable<TopItems<Track>> {
-    return this.sRequest.get<TopItems<Track>>(
-      'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=50&offset=0'
-    );
+  public getTopTracks(range: string): Observable<Track[]> {
+    return this.sRequest
+      .get<TopItems<Track>>(
+        `https://api.spotify.com/v1/me/top/tracks?time_range=${range}&limit=50&offset=0`
+      )
+      .pipe(
+        map((topItems) => topItems.items.map((track) => Track.fromJSON(track)))
+      );
   }
 
   public getFollowedArtists(): Observable<ArtistsPaged> {
