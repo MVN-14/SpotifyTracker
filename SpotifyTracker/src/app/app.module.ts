@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { RecentComponent } from './components/user/recent/recent.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
