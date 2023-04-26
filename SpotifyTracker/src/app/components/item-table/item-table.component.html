@@ -1,11 +1,7 @@
 <table class="table table-dark table-striped table-hover align-middle">
   <thead>
-    <tr>
-      <td
-        [ngClass]="{ 'tw-10': columName == '' }"
-        class="text-start"
-        *ngFor="let columName of columnNames"
-      >
+    <tr class="sticky">
+      <td class="text-start" *ngFor="let columName of columnNames">
         <p>{{ columName }}</p>
       </td>
     </tr>
@@ -15,16 +11,19 @@
       <td
         *ngFor="let tableData of tableRow.data"
         [ngSwitch]="tableData.element"
-        class="text-start"
+        class="text-start p-0 m-0"
       >
         <img
-          class=""
+          class="p-0 m-0"
           *ngSwitchCase="'img'"
           [src]="tableData.src"
           height="50px"
+          width="50px"
         />
-        <a *ngSwitchCase="'a'" [href]="tableData.href">{{ tableData.text }}</a>
-        <p *ngSwitchCase="'p'">{{ tableData.text }}</p>
+        <a class="p-2" *ngSwitchCase="'a'" [href]="tableData.href">{{
+          tableData.text
+        }}</a>
+        <p class="p-2" *ngSwitchCase="'p'">{{ tableData.text }}</p>
       </td>
     </tr>
   </tbody>

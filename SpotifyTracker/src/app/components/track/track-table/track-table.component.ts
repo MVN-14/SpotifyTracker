@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Track } from 'src/app/models';
+import { TableRow, Track } from 'src/app/models';
 
 @Component({
   selector: 'track-table',
@@ -11,7 +11,11 @@ export class TrackTableComponent {
   @Input() size: string = 'large';
   @Input() simplified: boolean = false;
 
-  redirectToTrack(track: Track): void {
-    window.location.href = `track/${track.id}`;
+  protected getColumnNames(): string[] {
+    return Track.GetColumnNames();
+  }
+
+  protected getTableRows(): TableRow[] {
+    return this.tracks.map((track) => track.getTableRow());
   }
 }

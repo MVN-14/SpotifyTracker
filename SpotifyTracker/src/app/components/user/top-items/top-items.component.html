@@ -1,14 +1,10 @@
-<div class="container-fluid p-5">
-  <div class="card bg-dark text-white">
-    <div class="card-header text-center">
-      <h2>Your Top {{ showingTracks ? "Tracks" : "Artists" }}</h2>
-    </div>
-    <div class="card-body">
-      <div
-        class="btn-group"
-        role="group"
-        aria-label="Basic radio toggle button group"
-      >
+<div class="container-fluid px-0 p-lg-5 pt-2">
+  <div>
+    <h2 class="text-white text-center pt-md-4 heading">
+      Your Top {{ showingTracks ? "Tracks" : "Artists" }}
+    </h2>
+    <div class="text-center pt-2">
+      <div class="btn-group text-center pt-md-2" role="group">
         <input
           (change)="showingTracks = true"
           type="radio"
@@ -18,7 +14,9 @@
           autocomplete="off"
           checked
         />
-        <label class="btn btn-success" for="tracksBtn">Tracks</label>
+        <label class="btn btn-outline-secondary text-white" for="tracksBtn"
+          >Tracks</label
+        >
 
         <input
           (change)="showingTracks = false"
@@ -28,17 +26,19 @@
           id="artistsBtn"
           autocomplete="off"
         />
-        <label class="btn btn-success" for="artistsBtn">Artists</label>
+        <label class="btn btn-outline-secondary text-white" for="artistsBtn"
+          >Artists</label
+        >
       </div>
+    </div>
+  </div>
 
-      <div class="scrolled-70">
-        <div *ngIf="showingTracks">
-          <track-table [tracks]="topTracks.items"></track-table>
-        </div>
-        <div *ngIf="!showingTracks">
-          <artist-table [artists]="topArtists.items"></artist-table>
-        </div>
-      </div>
+  <div class="pt-3 px-md-5">
+    <div *ngIf="showingTracks">
+      <track-table [tracks]="topTracks.items"></track-table>
+    </div>
+    <div *ngIf="!showingTracks">
+      <artist-table [artists]="topArtists.items"></artist-table>
     </div>
   </div>
 </div>

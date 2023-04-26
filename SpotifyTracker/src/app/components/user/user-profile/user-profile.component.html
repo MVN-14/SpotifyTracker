@@ -1,68 +1,83 @@
-<div class="container-fluid p-5-xl pt-2">
-  <div class="row text-white pt-1">
+<div class="container-fluid p-lg-5 pt-2">
+  <div *ngIf="userProfile$ | async as userProfile" class="row text-white pt-1">
     <div class="text-white d-flex justify-content-center">
       <img class="me-2 rounded" [src]="userProfile?.photo_url" height="50rem" />
-      <div>
+      <div class="text-center">
         <h2 class="text-center mb-0">{{ userProfile?.display_name }}</h2>
         <a [href]="userProfile?.external_urls?.spotify">
           View profile on spotify
         </a>
       </div>
     </div>
+
     <div class="col p-3">
-      <div id="extendedDetails">
+      <div class="collapse show" id="extendedDetails">
         <div class="row">
-          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
-            >Followers:</label
-          >
-          <p class="col py-0 my-0">{{ userProfile?.followers?.total }}</p>
-        </div>
-        <div class="row">
-          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
-            >Country:</label
-          >
-          <p class="col py-0 my-0">{{ userProfile?.country }}</p>
-        </div>
-        <div class="row">
-          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
-            >Plan:</label
-          >
-          <p class="col py-0 my-0">{{ userProfile?.product }}</p>
+          <div class="col-12 col-sm-6">
+            <div class="row">
+              <label class="col-3 col-sm-6 offset-md-3 py-0 my-0 text-end"
+                >Followers:</label
+              >
+              <p class="col py-0 my-0">{{ userProfile?.followers?.total }}</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="row">
+              <label class="col-3 py-0 my-0 text-end">ID:</label>
+              <p class="col py-0 my-0">{{ userProfile?.id }}</p>
+            </div>
+          </div>
         </div>
 
         <div class="row">
-          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
-            >User ID:</label
-          >
-          <p class="col py-0 my-0">{{ userProfile?.id }}</p>
+          <div class="col-12 col-sm-6">
+            <div class="row">
+              <label class="col-3 col-sm-6 offset-md-3 py-0 my-0 text-end"
+                >Plan:</label
+              >
+              <p class="col py-0 my-0">{{ userProfile?.product }}</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="row">
+              <label class="col-3 py-0 my-0 text-end">Explicit:</label>
+              <p class="col py-0 my-0">
+                {{
+                  userProfile?.explicit_content?.filter_enabled
+                    ? "Disabled"
+                    : "Enabled"
+                }}
+              </p>
+            </div>
+          </div>
         </div>
+
         <div class="row">
-          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
-            >Explicit:</label
-          >
-          <p class="col py-0 my-0">
-            {{
-              userProfile?.explicit_content?.filter_enabled
-                ? "Disabled"
-                : "Enabled"
-            }}
-          </p>
-        </div>
-        <div class="row">
-          <label class="col-3 col-sm-2 col-lg-1 py-0 my-0 text-end"
-            >Email:</label
-          >
-          <p class="col py-0 my-0">{{ userProfile?.email }}</p>
+          <div class="col-12 col-sm-6">
+            <div class="row">
+              <label class="col-3 col-sm-6 offset-md-3 py-0 my-0 text-end"
+                >Country:</label
+              >
+              <p class="col py-0 my-0">{{ userProfile?.country }}</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="row">
+              <label class="col-3 py-0 my-0 text-end">Email:</label>
+              <p class="col py-0 my-0">
+                {{ userProfile?.email }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row">
+      <div class="text-center">
         <a
-          class="offset-3 offset-sm-2 offset-lg-1 col"
           href="#extendedDetails"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#extendedDetails"
-          aria-expanded="false"
+          aria-expanded="true"
           aria-controls="extendedDetails"
           (click)="expanded = !expanded"
         >
@@ -70,11 +85,11 @@
         </a>
       </div>
 
-      <h2 class="text-center p-0">Your Followed Artists</h2>
+      <h2 class="pt-5 ps-md-5">Your Followed Artists</h2>
 
-      <div class="col text-center">
-        <div *ngIf="artistsPaged?.items" class="">
-          <artist-table [artists]="artistsPaged?.items"></artist-table>
+      <div class="col text-center px-md-5">
+        <div *ngIf="artists$ | async as artists">
+          <artist-table [artists]="artists"></artist-table>
         </div>
       </div>
     </div>

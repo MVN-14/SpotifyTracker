@@ -2,3 +2,12 @@
   font-size: 0.8em;
   padding-left: 1em;
 }
+
+label {
+  font-weight: bold;
+}
+
+p,
+label {
+  font-size: clamp(16px, 2vw, 20px);
+}

@@ -10,3 +10,20 @@ table thead p {
 th {
   position: sticky;
 }
+
+tbody tr {
+  cursor: pointer;
+}
+
+img {
+  min-width: clamp(50px, 10vw, 100px);
+  min-height: clamp(50px, 10vw, 100px);
+}
+
+p {
+  font-size: clamp(14px, 3vw, 20px) !important;
+}
+
+thead p {
+  font-size: clamp(16px, 3vw, 22px) !important;
+}

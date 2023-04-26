@@ -54,7 +54,7 @@ export class Artist extends SimplifiedArtist {
     return genreSeed;
   }
 
-  static getTableColumnNames(): string[] {
+  public static GetTableColumnNames(): string[] {
     return ['', 'Artist', 'Followers'];
   }
 

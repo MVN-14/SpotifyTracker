@@ -11,7 +11,7 @@ export class ArtistTableComponent {
   @Input() size: string = 'large';
 
   protected getColumnNames(): string[] {
-    return Artist.getTableColumnNames();
+    return Artist.GetTableColumnNames();
   }
 
   protected getTableRows(): TableRow[] {

@@ -55,17 +55,17 @@ a:hover {
   color: black;
 }
 
-thead tr td {
-  text-align: center;
-}
+// thead tr td {
+//   text-align: center;
+// }
 
-tr td {
-  text-align: center;
-}
+// tr td {
+//   text-align: center;
+// }
 
-tbody tr td {
-  vertical-align: middle;
-}
+// tbody tr td {
+//   vertical-align: middle;
+// }
 
 html body {
   background-color: $bg-color;
@@ -99,8 +99,18 @@ button {
   background: #555;
 }
 
-@media (max-width: 600px) {
-  table {
-    font-size: small;
-  }
+// @media (max-width: 600px) {
+//   table {
+//     font-size: small;
+//   }
+// }
+
+.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+.heading {
+  font-size: clamp(30px, 4vw, 44px) !important;
 }

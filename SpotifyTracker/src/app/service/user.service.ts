@@ -30,9 +30,11 @@ export class UserService {
     );
   }
 
-  public getFollowedArtists(): Observable<{ artists: ArtistsPaged }> {
-    return this.sRequest.get<{ artists: ArtistsPaged }>(
-      'https://api.spotify.com/v1/me/following?type=artist'
-    );
+  public getFollowedArtists(): Observable<ArtistsPaged> {
+    return this.sRequest
+      .get<{ artists: ArtistsPaged }>(
+        'https://api.spotify.com/v1/me/following?type=artist'
+      )
+      .pipe(map((artistPaged) => artistPaged.artists));
   }
 }
