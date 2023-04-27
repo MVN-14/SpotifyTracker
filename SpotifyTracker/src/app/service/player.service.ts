@@ -11,12 +11,7 @@ export class PlayerService {
 
   getRecentlyPlayedTracks(): Observable<RecentlyPlayedTracks> {
     return this.sRequest.get<RecentlyPlayedTracks>(
-      `https://api.spotify.com/v1/me/player/recently-played?limit=50&before=${1682472517852}`
+      `https://api.spotify.com/v1/me/player/recently-played?limit=50`
     );
-  }
-
-  // not working
-  getNextRecentlyPlayedTracks(url: string): Observable<RecentlyPlayedTracks> {
-    return this.sRequest.get<RecentlyPlayedTracks>(url);
   }
 }

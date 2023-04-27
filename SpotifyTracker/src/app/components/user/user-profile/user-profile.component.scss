@@ -1,13 +1,18 @@
-.collapseToggle {
-  font-size: 0.8em;
-  padding-left: 1em;
-}
-
 label {
   font-weight: bold;
 }
 
 p,
-label {
+label,
+a {
   font-size: clamp(16px, 2vw, 20px);
+}
+
+.collapseToggle {
+  font-size: 14px;
+}
+
+img {
+  min-width: clamp(50px, 10vw, 100px);
+  min-height: clamp(50px, 10vw, 100px);
 }

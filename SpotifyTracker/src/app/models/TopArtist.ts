@@ -3,7 +3,7 @@ import { TableRow } from './TableRow';
 
 export class TopArtist extends Artist {
   public static override GetTableColumnNames(): string[] {
-    return ['', 'Artist', 'Popularity'];
+    return ['', 'Artist', 'Genre', 'Popularity'];
   }
 
   public override getTableRow(): TableRow {
@@ -17,6 +17,10 @@ export class TopArtist extends Artist {
         {
           element: 'p',
           text: this.name,
+        },
+        {
+          element: 'p',
+          text: this.genres[0],
         },
         {
           element: 'p',

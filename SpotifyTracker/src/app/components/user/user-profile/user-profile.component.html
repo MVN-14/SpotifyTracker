@@ -1,97 +1,68 @@
 <div class="container-fluid p-lg-5 pt-2">
   <div *ngIf="userProfile$ | async as userProfile" class="row text-white pt-1">
-    <div class="text-white d-flex justify-content-center">
+    <div
+      class="text-white d-flex justify-content-center align-items-center mb-3"
+    >
       <img class="me-2 rounded" [src]="userProfile?.photo_url" height="50rem" />
-      <div class="text-center">
-        <h2 class="text-center mb-0">{{ userProfile?.display_name }}</h2>
+      <div class="">
+        <h2 class="mb-0">{{ userProfile?.display_name }}</h2>
         <a [href]="userProfile?.external_urls?.spotify">
           View profile on spotify
         </a>
       </div>
     </div>
 
-    <div class="col p-3">
-      <div class="collapse show" id="extendedDetails">
-        <div class="row">
-          <div class="col-12 col-sm-6">
-            <div class="row">
-              <label class="col-3 col-sm-6 offset-md-3 py-0 my-0 text-end"
-                >Followers:</label
-              >
-              <p class="col py-0 my-0">{{ userProfile?.followers?.total }}</p>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6">
-            <div class="row">
-              <label class="col-3 py-0 my-0 text-end">ID:</label>
-              <p class="col py-0 my-0">{{ userProfile?.id }}</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12 col-sm-6">
-            <div class="row">
-              <label class="col-3 col-sm-6 offset-md-3 py-0 my-0 text-end"
-                >Plan:</label
-              >
-              <p class="col py-0 my-0">{{ userProfile?.product }}</p>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6">
-            <div class="row">
-              <label class="col-3 py-0 my-0 text-end">Explicit:</label>
-              <p class="col py-0 my-0">
-                {{
-                  userProfile?.explicit_content?.filter_enabled
-                    ? "Disabled"
-                    : "Enabled"
-                }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12 col-sm-6">
-            <div class="row">
-              <label class="col-3 col-sm-6 offset-md-3 py-0 my-0 text-end"
-                >Country:</label
-              >
-              <p class="col py-0 my-0">{{ userProfile?.country }}</p>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6">
-            <div class="row">
-              <label class="col-3 py-0 my-0 text-end">Email:</label>
-              <p class="col py-0 my-0">
-                {{ userProfile?.email }}
-              </p>
-            </div>
-          </div>
-        </div>
+    <div class="collapse show" id="extendedDetails">
+      <div class="row">
+        <label class="col-6 text-end">Followers:</label>
+        <p class="col my-0">{{ userProfile?.followers?.total }}</p>
       </div>
-      <div class="text-center">
-        <a
-          href="#extendedDetails"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#extendedDetails"
-          aria-expanded="true"
-          aria-controls="extendedDetails"
-          (click)="expanded = !expanded"
-        >
-          {{ expanded ? "hide profile" : "show profile" }}
-        </a>
+      <div class="row">
+        <label class="col-6 text-end">Country:</label>
+        <p class="col my-0">{{ userProfile?.country }}</p>
       </div>
-
-      <h2 class="pt-5 ps-md-5">Your Followed Artists</h2>
-
-      <div class="col text-center px-md-5">
-        <div *ngIf="artists$ | async as artists">
-          <artist-table [artists]="artists"></artist-table>
-        </div>
+      <div class="row">
+        <label class="col-6 text-end">Plan:</label>
+        <p class="col my-0">{{ userProfile?.product }}</p>
+      </div>
+      <div class="row">
+        <label class="col-6 text-end">Explicit:</label>
+        <p class="col my-0">
+          {{
+            userProfile?.explicit_content?.filter_enabled
+              ? "Disabled"
+              : "Enabled"
+          }}
+        </p>
+      </div>
+      <div class="row">
+        <label class="col-6 text-end">ID:</label>
+        <p class="col my-0">{{ userProfile?.id }}</p>
       </div>
     </div>
+
+    <div class="text-center">
+      <a
+        class="collapseToggle"
+        href="#extendedDetails"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#extendedDetails"
+        aria-expanded="true"
+        aria-controls="extendedDetails"
+        (click)="expanded = !expanded"
+      >
+        {{ expanded ? "hide profile" : "show profile" }}
+      </a>
+    </div>
+
+    <h2 class="pt-5 ps-md-5">Your Followed Artists</h2>
+
+    <div class="col text-center px-md-5">
+      <div *ngIf="artists$ | async as artists">
+        <artist-table [artists]="artists"></artist-table>
+      </div>
+    </div>
+    <!-- </div> -->
   </div>
 </div>

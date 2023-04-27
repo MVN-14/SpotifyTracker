@@ -74,6 +74,7 @@ export class Artist extends SimplifiedArtist {
           text: this.followers.total.toString(),
         },
       ],
+      href: `/artist/${this.id}`,
     };
   }
 }
