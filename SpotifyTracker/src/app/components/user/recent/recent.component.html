@@ -18,7 +18,7 @@
         <tbody>
           <tr
             *ngFor="
-              let playHistory of recentlyPlayedTracks.items;
+              let playHistory of (recentlyPlayedTracks$ | async)?.items;
               let i = index
             "
             [attr.data-index]="i"
@@ -45,11 +45,16 @@
               <p>{{ playHistory.played_at | date }}</p>
             </td>
             <td>
-              <p>{{ playHistory.context?.type ?? "N/A" }}</p>
+              <!-- <p>{{ playHistory.context.type }}</p> -->
             </td>
           </tr>
         </tbody>
       </table>
+      <div class="card-footer">
+        <button class="btn btn-secondary" (click)="loadMoreTracks()">
+          Load More
+        </button>
+      </div>
     </div>
   </div>
 </div>

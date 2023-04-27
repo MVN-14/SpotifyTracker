@@ -2,49 +2,51 @@
 
 /* Importing Bootstrap SCSS file. */
 @import "node_modules/bootstrap/scss/bootstrap";
+@import "./variables";
 
-$bg-color: #3b3b3b;
-$spotify-green: #1ed760;
-
-.scrolled-80 {
-  overflow-y: scroll;
-  height: 80vh;
+* {
+  font-family: "Montserrat", sans-serif !important;
 }
 
-.scrolled-75 {
-  overflow-y: scroll;
-  height: 75vh;
-}
+// .scrolled-80 {
+//   overflow-y: scroll;
+//   height: 80vh;
+// }
 
-.scrolled-70 {
-  overflow-y: scroll;
-  height: 70vh;
-}
+// .scrolled-75 {
+//   overflow-y: scroll;
+//   height: 75vh;
+// }
 
-.scrolled-60 {
-  overflow-y: scroll;
-  height: 60vh;
-}
+// .scrolled-70 {
+//   overflow-y: scroll;
+//   height: 70vh;
+// }
 
-.scrolled-50 {
-  overflow-y: scroll;
-  height: 50vh;
-}
+// .scrolled-60 {
+//   overflow-y: scroll;
+//   height: 60vh;
+// }
 
-.scrolled-40 {
-  overflow-y: scroll;
-  height: 40vh;
-}
+// .scrolled-50 {
+//   overflow-y: scroll;
+//   height: 50vh;
+// }
 
-.scrolled-45 {
-  overflow-y: scroll;
-  height: 45vh;
-}
+// .scrolled-40 {
+//   overflow-y: scroll;
+//   height: 40vh;
+// }
 
-.scrolled-30 {
-  overflow-y: scroll;
-  height: 30vh;
-}
+// .scrolled-45 {
+//   overflow-y: scroll;
+//   height: 45vh;
+// }
+
+// .scrolled-30 {
+//   overflow-y: scroll;
+//   height: 30vh;
+// }
 
 a {
   color: $spotify-green;
@@ -79,30 +81,24 @@ button {
   color: $spotify-green !important;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
+// /* width */
+// ::-webkit-scrollbar {
+//   width: 10px;
+// }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: black;
-}
+// /* Track */
+// ::-webkit-scrollbar-track {
+//   background: black;
+// }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: $spotify-green;
-}
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//   background: $spotify-green;
+// }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-// @media (max-width: 600px) {
-//   table {
-//     font-size: small;
-//   }
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #555;
 // }
 
 .sticky {
@@ -115,10 +111,8 @@ button {
   font-size: clamp(30px, 4vw, 44px) !important;
 }
 
-.mw-500 {
-  max-width: 500px;
-}
-
-.mw-400 {
-  max-width: 400px;
+.list-group-item {
+  background-color: $spotify-green;
+  color: white;
+  // background-color: green;
 }

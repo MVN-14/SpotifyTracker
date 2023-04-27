@@ -1,3 +1,5 @@
+@import "../../../variables";
+
 p {
   margin: 0;
 }
@@ -25,5 +27,14 @@ p {
 }
 
 thead p {
-  font-size: clamp(16px, 3vw, 22px) !important;
+  font-size: clamp(16px, 3vw, 20px) !important;
+}
+
+.img {
+  max-width: 50px;
+}
+
+table {
+  border: 3px solid $spotify-green;
+  border-radius: 10px;
 }

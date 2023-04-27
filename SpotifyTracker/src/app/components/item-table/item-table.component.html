@@ -12,6 +12,7 @@
         *ngFor="let tableData of tableRow.data"
         [ngSwitch]="tableData.element"
         class="text-start p-0 m-0"
+        [ngClass]="{ img: tableData.element === 'img' }"
       >
         <img
           class="p-0 m-0"
