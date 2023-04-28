@@ -6,7 +6,6 @@ import {
   SimplifiedArtist,
   TableRow,
 } from './index';
-import { DatePipe } from '@angular/common';
 
 export class Track {
   album: Album = new Album();

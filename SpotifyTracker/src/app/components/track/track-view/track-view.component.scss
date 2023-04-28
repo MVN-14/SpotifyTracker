@@ -1,8 +1,6 @@
-.card-body p {
-  font-size: 20px;
-}
-
-.card-body label {
-  font-size: 20px;
-  font-weight: bold;
+img {
+  // min-width: clamp(50px, 10vw, 200px);
+  // min-height: clamp(50px, 10vw, 200px);
+  width: 100vw;
+  max-width: 400px;
 }

@@ -1,5 +1,55 @@
-<div class="container-fluid p-5">
-  <div class="card bg-dark text-white">
+<div
+  class="text-white container-fluid px-0 px-sm-5 p-lg-5 pt-2"
+  *ngIf="track$ | async as track"
+>
+  <h2 class="text-center pt-md-4 heading">{{ track.name }}</h2>
+  <div class="row m-0">
+    <div
+      class="col-12 col-lg-6 offset-lg-1 offset-xl-2 col-xl-5 p-0 text-center pt-2"
+    >
+      <img [src]="track.album.images[0].url" />
+    </div>
+    <div class="col">
+      <div class="row pt-3">
+        <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end">Album:</label>
+        <a [href]="track.external_urls.spotify" class="col my-0"
+          >{{ track.album.name }}
+        </a>
+      </div>
+      <div class="row">
+        <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end">Artist:</label>
+        <a [href]="track.artists[0].external_urls.spotify" class="col my-0"
+          >{{ track.artists[0].name }}
+        </a>
+      </div>
+      <div class="row">
+        <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end">Length:</label>
+        <p class="col my-0">{{ track.duration_ms | date : "mm:ss" }}</p>
+      </div>
+      <div class="row">
+        <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end"
+          >Popularity:</label
+        >
+        <p class="col my-0">{{ track.popularity }}</p>
+      </div>
+      <div class="row">
+        <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end"
+          >Track #:</label
+        >
+        <p class="col my-0">{{ track.track_number }}</p>
+      </div>
+    </div>
+
+    <div
+      *ngIf="recommendedTracks$ | async as recommendedTracks"
+      class="px-0 mx-0 text-center"
+    >
+      <h3 class="pt-5">Tracks Like {{ track.name }}</h3>
+      <track-table [tracks]="recommendedTracks"></track-table>
+    </div>
+  </div>
+
+  <!-- <div class="card bg-dark text-white">
     <div class="card-header text-center">
       <h2>Track - {{ track.name }}</h2>
     </div>
@@ -50,6 +100,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 >

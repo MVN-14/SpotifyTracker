@@ -1,45 +1,39 @@
 <div class="container-fluid px-0 p-lg-5 pt-2">
-  <div>
-    <h2 class="text-white text-center pt-md-4 heading">
-      Your Top {{ showingTracks ? "Tracks" : "Artists" }}
-    </h2>
-    <div class="text-center pt-2">
-      <div class="btn-group text-center pt-md-2" role="group">
-        <input
-          (change)="showingTracks = true"
-          type="radio"
-          class="btn-check"
-          name="btnradio"
-          id="tracksBtn"
-          autocomplete="off"
-          checked
-        />
-        <label class="btn btn-outline-secondary text-white" for="tracksBtn"
-          >Tracks</label
-        >
+  <h2 class="text-white text-center pt-md-4 heading">
+    Your Top {{ showingTracks ? "Tracks" : "Artists" }}
+  </h2>
+  <div class="text-center pt-2">
+    <div class="btn-group text-center pt-md-2" role="group">
+      <input
+        (change)="showingTracks = true"
+        type="radio"
+        class="btn-check"
+        name="btnradio"
+        id="tracksBtn"
+        autocomplete="off"
+        checked
+      />
+      <label class="btn btn-dark text-white" for="tracksBtn">Tracks</label>
 
-        <input
-          (change)="showingTracks = false"
-          type="radio"
-          class="btn-check"
-          name="btnradio"
-          id="artistsBtn"
-          autocomplete="off"
-        />
-        <label class="btn btn-outline-secondary text-white" for="artistsBtn"
-          >Artists</label
-        >
-      </div>
-      <div class="pt-2 row">
-        <div
-          class="col-8 col-sm-6 offset-sm-3 col-md-4 col-xl-2 offset-xl-5 offset-md-4 offset-2"
-        >
-          <select class="form-select" (change)="onRangeChange($event)">
-            <option selected value="short_term">Short Term</option>
-            <option value="medium_term">Medium Term</option>
-            <option value="long_term">Long Term</option>
-          </select>
-        </div>
+      <input
+        (change)="showingTracks = false"
+        type="radio"
+        class="btn-check"
+        name="btnradio"
+        id="artistsBtn"
+        autocomplete="off"
+      />
+      <label class="btn btn-dark text-white" for="artistsBtn">Artists</label>
+    </div>
+    <div class="pt-2 row">
+      <div
+        class="col-8 col-sm-6 offset-sm-3 col-md-4 col-xl-2 offset-xl-5 offset-md-4 offset-2"
+      >
+        <select class="form-select" (change)="onRangeChange($event)">
+          <option selected value="short_term">Short Term</option>
+          <option value="medium_term">Medium Term</option>
+          <option value="long_term">Long Term</option>
+        </select>
       </div>
     </div>
   </div>

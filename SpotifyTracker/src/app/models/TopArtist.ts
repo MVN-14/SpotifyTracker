@@ -7,7 +7,6 @@ export class TopArtist extends Artist {
   }
 
   public override getTableRow(): TableRow {
-    console.log(this);
     return {
       data: [
         {

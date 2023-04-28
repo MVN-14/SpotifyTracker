@@ -115,3 +115,17 @@ button {
   background-color: $spotify-green;
   color: white;
 }
+
+label {
+  font-weight: bold;
+}
+
+p,
+label,
+a {
+  font-size: clamp(16px, 2vw, 20px);
+}
+
+table p {
+  font-size: clamp(10px, 2vw, 20px);
+}

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
 import { Track } from 'src/app/models';
-import { TrackService } from 'src/app/service';
+import { TrackService, UserService } from 'src/app/service';
 
 @Component({
   selector: 'app-track-view',
@@ -10,20 +10,32 @@ import { TrackService } from 'src/app/service';
   styleUrls: ['./track-view.component.scss'],
 })
 export class TrackViewComponent implements OnInit {
-  track: Track = new Track();
+  track$?: Observable<Track>;
+  recommendedTracks$?: Observable<Track[]>;
 
-  constructor(private sTrack: TrackService, private route: ActivatedRoute) {}
+  constructor(
+    private sTrack: TrackService,
+    private route: ActivatedRoute,
+    private sUser: UserService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       if (!params['id']) return;
-      
-      this.sTrack
-        .getTrackById(params['id'])
-        .pipe(take(1))
-        .subscribe((track) => {
-          this.track = Track.fromJSON(track);
-        });
+
+      this.track$ = this.sTrack.getTrackById(params['id']).pipe(
+        tap((track) => {
+          this.sUser
+            .getCurrentUserProfile()
+            .pipe(take(1))
+            .subscribe((userProfile) => {
+              this.recommendedTracks$ = this.sTrack.getTrackRecommendations(
+                userProfile.country,
+                track.id
+              );
+            });
+        })
+      );
     });
   }
 }

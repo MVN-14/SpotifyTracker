@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecentlyPlayedTracks } from 'src/app/models';
+import { PlayHistory, RecentlyPlayedTracks } from 'src/app/models';
 import { PlayerService } from '../../../service';
 import { Observable, concat, tap } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { Observable, concat, tap } from 'rxjs';
   styleUrls: ['./recent.component.scss'],
 })
 export class RecentComponent implements OnInit {
-  recentlyPlayedTracks$?: Observable<RecentlyPlayedTracks>;
+  recentlyPlayedTracks$?: Observable<PlayHistory[]>;
 
   constructor(private sPlayer: PlayerService) {}
 

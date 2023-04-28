@@ -21,6 +21,7 @@ import { ArtistAlbumsComponent } from './components';
 import { TrackRecommendationsComponent } from './components/track/track-recommendations/track-recommendations.component';
 import { AlbumViewComponent } from './components/album/album-view/album-view.component';
 import { ItemTableComponent } from './components/item-table/item-table.component';
+import { PlayHistoryTableComponent } from './components/track/play-history-table/play-history-table.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ItemTableComponent } from './components/item-table/item-table.component
     TrackRecommendationsComponent,
     AlbumViewComponent,
     ItemTableComponent,
+    PlayHistoryTableComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   bootstrap: [AppComponent],
