@@ -3,7 +3,7 @@ import { TableRow, Track, TrackContext } from './index';
 export class PlayHistory {
   track: Track = new Track();
   played_at: string = '';
-  context?: TrackContext = new TrackContext();
+  context?: TrackContext;
 
   public static GetColumnNames(): string[] {
     return ['', 'Track', 'Played At'];

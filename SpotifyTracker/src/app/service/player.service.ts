@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { PlayHistory, RecentlyPlayedTracks, Track } from '../models';
 import { GenericRequestSerice } from './generic.request.service';
-import { map, tap } from 'rxjs';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

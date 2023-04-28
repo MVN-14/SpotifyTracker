@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs';
-import { Album } from 'src/app/models';
+import { Observable, take, tap } from 'rxjs';
+import { Album, Track } from 'src/app/models';
 import { AlbumService, UserService } from 'src/app/service';
 
 @Component({
@@ -10,7 +10,8 @@ import { AlbumService, UserService } from 'src/app/service';
   styleUrls: ['./album-view.component.scss'],
 })
 export class AlbumViewComponent implements OnInit {
-  album: Album = new Album();
+  album$?: Observable<Album>;
+  tracks$?: Observable<Track[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,11 +27,15 @@ export class AlbumViewComponent implements OnInit {
         .getCurrentUserProfile()
         .pipe(take(1))
         .subscribe((userProfile) => {
-          this.sAlbum
-            .getAlbumById(params['id'], userProfile.country)
-            .subscribe((album) => {
-              this.album = Album.fromJSON(album);
-            });
+          this.album$ = this.sAlbum.getAlbumById(
+            params['id'],
+            userProfile.country
+          );
+
+          this.tracks$ = this.sAlbum.getAlbumTracks(
+            params['id'],
+            userProfile.country
+          );
         });
     });
   }

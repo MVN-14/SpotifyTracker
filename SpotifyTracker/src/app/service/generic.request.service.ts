@@ -8,11 +8,15 @@ import { Observable, catchError, shareReplay, take, tap } from 'rxjs';
 export class GenericRequestSerice {
   constructor(private http: HttpClient) {}
 
-  get<T>(url: string): Observable<T> {
+  public get<T>(url: string): Observable<T> {
     return this.http.get<T>(url, {
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('access_token')}`,
       },
     });
+  }
+
+  public getWithoutAuthorization<T>(url: string): Observable<T> {
+    return this.http.get<T>(url);
   }
 }

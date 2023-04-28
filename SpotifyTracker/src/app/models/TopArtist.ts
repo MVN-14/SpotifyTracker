@@ -1,5 +1,4 @@
-import { Artist } from './Artist';
-import { TableRow } from './TableRow';
+import { Artist, TableRow } from './index';
 
 export class TopArtist extends Artist {
   public static override GetTableColumnNames(): string[] {

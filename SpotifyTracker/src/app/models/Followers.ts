@@ -1,4 +1,4 @@
-export class Followers {
-  href: string = "";
-  total: number = 0;
+export interface Followers {
+  href: string;
+  total: number;
 }

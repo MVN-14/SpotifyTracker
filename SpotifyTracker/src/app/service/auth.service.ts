@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { RefreshTokenResponse } from '../models';
-import { HttpClient } from '@angular/common/http';
 import { QueryParams } from '../models/QueryParams';
+import { GenericRequestSerice } from './generic.request.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private sRequest: GenericRequestSerice) {}
 
   private static readonly SCOPE =
     'user-follow-read user-read-private user-read-email user-top-read user-read-recently-played user-read-playback-position app-remote-control streaming user-modify-playback-state user-read-playback-state user-read-currently-playing';
@@ -17,7 +17,7 @@ export class AuthService {
   private static readonly REDIRECT_URI: string =
     'http://localhost:8008/login/callback';
 
-  getLoginUrl(): string {
+  public getLoginUrl(): string {
     const params: QueryParams = new QueryParams()
       .add('client_id', AuthService.CLIENT_ID)
       .add('response_type', 'code')
@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   refreshAccessToken(): Observable<RefreshTokenResponse> {
-    return this.http.get<RefreshTokenResponse>(
+    return this.sRequest.get<RefreshTokenResponse>(
       `http://localhost:8008/login/refresh/${sessionStorage.getItem(
         'refresh_token'
       )}`

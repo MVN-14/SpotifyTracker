@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 import { Observable, map } from 'rxjs';
-import { Artist, ArtistsPaged, UserProfile } from 'src/app/models';
+import { Artist, UserProfile } from 'src/app/models';
 
 @Component({
   selector: 'user-profile',
@@ -9,7 +9,6 @@ import { Artist, ArtistsPaged, UserProfile } from 'src/app/models';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-  artistsPaged?: ArtistsPaged;
   expanded: boolean = true;
 
   artists$?: Observable<Artist[]>;
@@ -18,13 +17,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private sUser: UserService) {}
 
   ngOnInit(): void {
-    this.artists$ = this.sUser
-      .getFollowedArtists()
-      .pipe(
-        map((artistsPaged) =>
-          artistsPaged.items.map((artist: Artist) => Artist.fromJSON(artist))
-        )
-      );
+    this.artists$ = this.sUser.getFollowedArtists();
     this.userProfile$ = this.sUser.getCurrentUserProfile();
   }
 }

@@ -1,5 +1,5 @@
-export class ExternalIDs {
-  isrc: string = "";
-  ean: string = "";
-  upc: string = "";
+export interface ExternalIDs {
+  isrc: string;
+  ean: string;
+  upc: string;
 }

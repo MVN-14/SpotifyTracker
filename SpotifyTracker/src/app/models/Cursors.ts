@@ -1,4 +1,4 @@
-export class Cursors {
-  after: string = "";
-  before: string = "";
+export interface Cursors {
+  after: string;
+  before: string;
 }

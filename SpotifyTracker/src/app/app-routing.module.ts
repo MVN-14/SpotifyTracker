@@ -7,11 +7,11 @@ import {
   UserProfileComponent,
   TopItemsComponent,
   RecentComponent,
+  TrackViewComponent,
+  ArtistViewComponent,
+  AlbumViewComponent,
 } from './components';
 import { authGuard } from './auth.guard';
-import { TrackViewComponent } from './components/track/track-view/track-view.component';
-import { ArtistViewComponent } from './components/artist/artist-view/artist-view.component';
-import { AlbumViewComponent } from './components/album/album-view/album-view.component';
 
 const routes: Routes = [
   {

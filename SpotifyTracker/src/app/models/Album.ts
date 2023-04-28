@@ -1,30 +1,30 @@
-import { SimplifiedArtist } from './SimplifiedArtist';
 import {
   ExternalUrls,
-  Images,
-  Restrictions,
+  Image,
   Copyrights,
   ExternalIDs,
   Artist,
   Track,
+  TableRow,
+  SimplifiedArtist,
 } from './index';
 
 export class Album {
   album_type: string = '';
   total_tracks: number = 0;
   available_markets: string[] = [];
-  external_urls: ExternalUrls = new ExternalUrls();
+  external_urls: ExternalUrls = { spotify: '' };
   href: string = '';
   id: string = '';
-  images: Images[] = [];
+  images: Image[] = [];
   name: string = '';
   release_date: string = '';
   release_date_precision: string = '';
-  restrictions: Restrictions = new Restrictions();
+  restrictions: { reason: string } = { reason: '' };
   type: string = '';
   uri: string = '';
   copyrights: Copyrights[] = [];
-  external_ids: ExternalIDs = new ExternalIDs();
+  external_ids: ExternalIDs = { isrc: '', upc: '', ean: '' };
   genres: string[] = [];
   label: string = '';
   popularity: number = 0;
@@ -60,7 +60,61 @@ export class Album {
     return album;
   }
 
-  getGenreString(): string {
+  public static GetColumnNames(): string[] {
+    return ['', 'Release Date', 'Type'];
+  }
+
+  public static GetAlbumTrackColumnNames(): string[] {
+    return ['#', 'Track', 'Length'];
+  }
+
+  public getRowData(): TableRow {
+    return {
+      data: [
+        {
+          element: 'img',
+          src: this.images[0].url,
+        },
+        {
+          element: 'p',
+          text: this.name,
+        },
+        {
+          element: 'p',
+          text: this.release_date,
+        },
+        {
+          element: 'p',
+          text: this.album_type,
+        },
+      ],
+    };
+  }
+
+  public static GetAlbumTrackRowData(track: Track): TableRow {
+    return {
+      data: [
+        {
+          element: 'p',
+          text: track.track_number.toString(),
+        },
+        {
+          element: 'p',
+          text: track.name,
+        },
+        {
+          element: 'p',
+          text: new Date(track.duration_ms).toLocaleTimeString([], {
+            minute: '2-digit',
+            second: '2-digit',
+          }),
+        },
+      ],
+      href: `/track/${track.id}`,
+    };
+  }
+
+  public getGenreString(): string {
     if (!this.genres?.length) return 'N/A';
 
     let genresString: string = '';
@@ -73,7 +127,7 @@ export class Album {
     return genresString;
   }
 
-  getArtistString(): string {
+  public getArtistString(): string {
     let artistsString: string = '';
     this.artists.forEach((artist, idx) => {
       artistsString += artist.name;

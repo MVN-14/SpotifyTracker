@@ -6,6 +6,7 @@ import {
   Track,
   ArtistsPaged,
   TopArtist,
+  Artist,
 } from '../models';
 import { GenericRequestSerice } from './generic.request.service';
 import { map } from 'rxjs';
@@ -46,11 +47,15 @@ export class UserService {
       );
   }
 
-  public getFollowedArtists(): Observable<ArtistsPaged> {
+  public getFollowedArtists(): Observable<Artist[]> {
     return this.sRequest
       .get<{ artists: ArtistsPaged }>(
         'https://api.spotify.com/v1/me/following?type=artist'
       )
-      .pipe(map((artistPaged) => artistPaged.artists));
+      .pipe(
+        map((artistPaged) =>
+          artistPaged.artists.items.map((artist) => Artist.fromJSON(artist))
+        )
+      );
   }
 }

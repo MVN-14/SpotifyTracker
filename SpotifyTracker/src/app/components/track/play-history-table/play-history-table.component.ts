@@ -8,10 +8,11 @@ import { TableRow, PlayHistory } from 'src/app/models';
 })
 export class PlayHistoryTableComponent {
   @Input() playHistorys?: PlayHistory[];
-  @Input() simplified: boolean = false;
+
   protected getColumnNames(): string[] {
     return PlayHistory.GetColumnNames();
   }
+
   protected getTableRows(): TableRow[] {
     return (
       this.playHistorys?.map((playHistory) => playHistory.getTableRow()) ?? []

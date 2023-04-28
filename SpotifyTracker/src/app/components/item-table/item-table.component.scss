@@ -38,3 +38,8 @@ table {
   border: 3px solid $spotify-green;
   border-radius: 10px;
 }
+
+td {
+  max-width: 25vh;
+  text-overflow: ellipsis;
+}

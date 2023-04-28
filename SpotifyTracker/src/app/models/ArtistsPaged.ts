@@ -1,7 +1,6 @@
-import { Artist } from "./Artist";
-import { Cursors } from "./Cursors";
+import { Artist, Cursors } from './index';
 
-export type ArtistsPaged = {
+export interface ArtistsPaged {
   href: string;
   limit: number;
   next: string;

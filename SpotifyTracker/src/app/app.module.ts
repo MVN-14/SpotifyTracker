@@ -15,13 +15,13 @@ import { ArtistTableComponent } from './components/artist/artist-table/artist-ta
 import { TrackViewComponent } from './components/track/track-view/track-view.component';
 import { ArtistViewComponent } from './components/artist/artist-view/artist-view.component';
 import { TopTracksComponent } from './components/artist/top-tracks/top-tracks.component';
-import { RelatedArtistsComponent } from './components/artist/related-artists/related-artists.component';
 import { AlbumTableComponent } from './components/album/album-table/album-table.component';
 import { ArtistAlbumsComponent } from './components';
-import { TrackRecommendationsComponent } from './components/track/track-recommendations/track-recommendations.component';
+// import { TrackRecommendationsComponent } from './components/track/track-recommendations/track-recommendations.component';
 import { AlbumViewComponent } from './components/album/album-view/album-view.component';
 import { ItemTableComponent } from './components/item-table/item-table.component';
 import { PlayHistoryTableComponent } from './components/track/play-history-table/play-history-table.component';
+import { AlbumTracksComponent } from './components/track/album-tracks/album-tracks.component';
 
 @NgModule({
   declarations: [
@@ -37,13 +37,13 @@ import { PlayHistoryTableComponent } from './components/track/play-history-table
     TrackViewComponent,
     ArtistViewComponent,
     TopTracksComponent,
-    RelatedArtistsComponent,
     AlbumTableComponent,
     ArtistAlbumsComponent,
-    TrackRecommendationsComponent,
+    // TrackRecommendationsComponent,
     AlbumViewComponent,
     ItemTableComponent,
     PlayHistoryTableComponent,
+    AlbumTracksComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   bootstrap: [AppComponent],

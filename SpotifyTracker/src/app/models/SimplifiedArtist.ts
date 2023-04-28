@@ -1,7 +1,7 @@
-import { ExternalUrls, TableRow } from './index';
+import { ExternalUrls } from './index';
 
 export class SimplifiedArtist {
-  external_urls: ExternalUrls = new ExternalUrls();
+  external_urls: ExternalUrls = { spotify: '' };
   href: string = '';
   id: string = '';
   name: string = '';

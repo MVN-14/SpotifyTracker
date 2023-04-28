@@ -1,64 +1,36 @@
-<div class="container-fluid p-5">
-  <div class="card bg-dark text-white">
-    <div class="card-header text-center">
-      <h2>{{ album.name }}</h2>
+<div
+  class="text-white container-fluid px-0 px-sm-5 p-lg-5 pt-2"
+  *ngIf="album$ | async as album"
+>
+  <h2 class="text-center pt-md-4 heading">{{ album.name }}</h2>
+  <div class="row m-0">
+    <div
+      class="col-12 col-lg-6 offset-lg-1 offset-xl-2 col-xl-5 p-0 text-center pt-2"
+    >
+      <img [src]="album.images[0].url" />
+    </div>
+    <div class="col">
+      <div class="row pt-3">
+        <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end">Artist:</label>
+        <a href="/album/{{ album.artists[0].name }}" class="col my-0"
+          >{{ album.artists[0].name }}
+        </a>
+      </div>
+      <div class="row">
+        <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end">Tracks:</label>
+        <p class="col my-0">{{ album.total_tracks }}</p>
+      </div>
+      <div class="row">
+        <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end"
+          >Popularity:</label
+        >
+        <p class="col my-0">{{ album.popularity }}</p>
+      </div>
     </div>
 
-    <div class="card-body text-center p-5">
-      <div class="row text-center">
-        <div class="col-5">
-          <img width="450" [src]="album.images[0].url" />
-        </div>
-
-        <div class="col">
-          <track-table
-            [tracks]="album.tracks"
-            [simplified]="true"
-          ></track-table>
-        </div>
-      </div>
-
-      <div class="row pt-5">
-        <div class="col-6">
-          <div class="row">
-            <label class="col-3 text-end">Artist:</label>
-            <a class="col text-start" href="/artist/{{ album.artists[0].id }}">
-              <p>{{ album.getArtistString() }}</p>
-            </a>
-          </div>
-
-          <div class="row">
-            <label class="col-3 text-end">Album Type:</label>
-            <p class="col text-start">{{ album.type }}</p>
-          </div>
-
-          <div class="row">
-            <label class="col-3 text-end">Listen on Spotify:</label>
-            <a class="col text-start" href="{{ album.external_urls.spotify }}"
-              ><p>{{ album.external_urls.spotify }}</p></a
-            >
-          </div>
-
-          <div class="row">
-            <label class="col-3 text-end">Release Date:</label>
-            <p class="col text-start">{{ album.release_date | date }}</p>
-          </div>
-
-          <div class="row">
-            <label class="col-3 text-end">Genres</label>
-            <p class="col text-start">{{ album.getGenreString() }}</p>
-          </div>
-
-          <div class="row">
-            <label class="col-3 text-end">Copyrights:</label>
-            <div class="col text-start">
-              <p *ngFor="let copyright of album.copyrights">
-                {{ copyright.type }} - {{ copyright.text }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div *ngIf="tracks$ | async as tracks" class="px-0 mx-0 text-center">
+      <h3 class="pt-5">Tracks</h3>
+      <album-tracks [tracks]="tracks"></album-tracks>
     </div>
   </div>
 </div>

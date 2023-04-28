@@ -1,5 +1,4 @@
-import { ExternalUrls, Followers } from './index';
-import { Image } from './Image';
+import { ExternalUrls, Followers, Image } from './index';
 
 export interface UserProfile {
   country: string;

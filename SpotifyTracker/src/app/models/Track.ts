@@ -2,7 +2,6 @@ import {
   Album,
   ExternalIDs,
   ExternalUrls,
-  Restrictions,
   SimplifiedArtist,
   TableRow,
 } from './index';
@@ -14,12 +13,12 @@ export class Track {
   disc_number: number = 0;
   duration_ms: number = 0;
   explicit: boolean = false;
-  external_ids: ExternalIDs = new ExternalIDs();
-  external_urls: ExternalUrls = new ExternalUrls();
+  external_ids: ExternalIDs = { isrc: '', upc: '', ean: '' };
+  external_urls: ExternalUrls = { spotify: '' };
   href: string = '';
   id: string = '';
   is_playable: boolean = false;
-  restrictions: Restrictions = new Restrictions();
+  restrictions: { reason: string } = { reason: '' };
   name: string = '';
   popularity: number = 0;
   preview_url: string = '';
@@ -28,10 +27,31 @@ export class Track {
   uri: string = '';
   is_local: boolean = false;
 
-  public getAlbumPhotoUrl(): string {
-    if (!this.album.images) return '';
+  public static GetColumnNames(): string[] {
+    return ['', 'Track', 'Artist', 'Length'];
+  }
 
-    return this.album.images[0].url;
+  public static fromJSON(data: any): Track {
+    const track: Track = new Track();
+    track.album = data.album;
+    track.artists = data.artists;
+    track.available_markets = data.available_markets;
+    track.disc_number = data.disc_number;
+    track.duration_ms = data.duration_ms;
+    track.explicit = data.explicit;
+    track.external_ids = data.external_ids;
+    track.href = data.href;
+    track.id = data.id;
+    track.is_playable = data.is_playable;
+    track.restrictions = data.restrictions;
+    track.name = data.name;
+    track.popularity = data.popularity;
+    track.preview_url = data.preview_url;
+    track.track_number = data.track_number;
+    track.type = data.type;
+    track.uri = data.uri;
+    track.is_local = data.is_local;
+    return track;
   }
 
   public getArtistString(): string {
@@ -43,30 +63,6 @@ export class Track {
       }
     });
     return artistsString;
-  }
-
-  public getArtistSeed(): string {
-    let artistSeed: string = '';
-    this.artists.forEach((artist) => (artistSeed += `${artist.id},`));
-    return artistSeed.substring(0, artistSeed.length - 1);
-  }
-
-  public getGenreString(): string {
-    if (!this.album.genres) return 'N/A';
-    let genreString: string = '';
-    this.album.genres.forEach((genre, idx) => {
-      genreString += genre;
-      if (idx !== this.artists.length - 1) {
-        genreString += ', ';
-      }
-    });
-    return genreString;
-  }
-
-  getListenUrl(): string {
-    if (this.external_urls.spotify) return this.external_urls.spotify;
-
-    return `https://open.spotify.com/track/${this.id}`;
   }
 
   public getTableRow(): TableRow {
@@ -94,32 +90,5 @@ export class Track {
       ],
       href: `/track/${this.id}`,
     };
-  }
-
-  public static GetColumnNames(): string[] {
-    return ['', 'Track', 'Artist', 'Length'];
-  }
-
-  public static fromJSON(data: any): Track {
-    const track: Track = new Track();
-    track.album = data.album;
-    track.artists = data.artists;
-    track.available_markets = data.available_markets;
-    track.disc_number = data.disc_number;
-    track.duration_ms = data.duration_ms;
-    track.explicit = data.explicit;
-    track.external_ids = data.external_ids;
-    track.href = data.href;
-    track.id = data.id;
-    track.is_playable = data.is_playable;
-    track.restrictions = data.restrictions;
-    track.name = data.name;
-    track.popularity = data.popularity;
-    track.preview_url = data.preview_url;
-    track.track_number = data.track_number;
-    track.type = data.type;
-    track.uri = data.uri;
-    track.is_local = data.is_local;
-    return track;
   }
 }

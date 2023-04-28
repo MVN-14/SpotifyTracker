@@ -1,3 +1,3 @@
-export class ExternalUrls {
-  spotify: string = "";
+export interface ExternalUrls {
+  spotify: string;
 }

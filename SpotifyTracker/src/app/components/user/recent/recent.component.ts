@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayHistory, RecentlyPlayedTracks } from 'src/app/models';
+import { PlayHistory } from 'src/app/models';
 import { PlayerService } from '../../../service';
-import { Observable, concat, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recent',

@@ -1,4 +1,4 @@
-export class Copyrights {
-  text: string = "";
-  type: string = "";
+export interface Copyrights {
+  text: string;
+  type: string;
 }

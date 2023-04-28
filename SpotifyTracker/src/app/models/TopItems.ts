@@ -1,12 +1,9 @@
-import { Artist } from "./Artist";
-import { Track } from "./Track";
-
-export class TopItems<T> {
-  href: string = "";
-  limit: number = 0;
+export interface TopItems<T> {
+  href: string;
+  limit: number;
   next?: string;
-  offset: number = 0;
+  offset: number;
   previous?: string;
-  total: number = 0;
-  items: T[] = [];
+  total: number;
+  items: T[];
 }

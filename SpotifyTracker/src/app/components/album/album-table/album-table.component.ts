@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Album } from '../../../models';
+import { Album, TableRow } from '../../../models';
 
 @Component({
   selector: 'album-table',
@@ -8,10 +8,12 @@ import { Album } from '../../../models';
 })
 export class AlbumTableComponent {
   @Input() albums?: Album[];
-  @Input() size: string = 'large';
-  @Input() simplified: boolean = false;
 
-  redirectToAlbum(album: Album): void {
-    window.location.href = `/album/${album.id}`;
+  protected getColumnNames(): string[] {
+    return Album.GetColumnNames();
+  }
+
+  protected getTableRows(): TableRow[] {
+    return this.albums?.map((album) => album.getRowData()) ?? [];
   }
 }

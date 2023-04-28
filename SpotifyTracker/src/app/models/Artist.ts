@@ -1,10 +1,10 @@
 import { SimplifiedArtist } from './SimplifiedArtist';
-import { Followers, Images, TableRow } from './index';
+import { Followers, Image, TableRow } from './index';
 
 export class Artist extends SimplifiedArtist {
-  followers: Followers = new Followers();
+  followers: Followers = { total: 0, href: '' };
   genres: string[] = [];
-  images: Images[] = [];
+  images: Image[] = [];
   popularity: number = 0;
 
   public static fromJSON(data: any): Artist {
