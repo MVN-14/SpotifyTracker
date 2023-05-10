@@ -1,4 +1,4 @@
-/.vscode/
+.vscode
 /package-lock.json
 
 */node_modules
@@ -8,5 +8,7 @@
 /API/dist/
 
 /SpotifyTracker/.angular
+/SpotifyTracker/.editorConfig
+
 
 /TODO.txt
