@@ -27,6 +27,10 @@
         <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end">Track #:</label>
         <p class="col my-0">{{ track.track_number }}</p>
       </div>
+      <div class="row">
+        <label class="col-4 col-sm-5 col-lg-4 col-xl-3"></label>
+        <a [href]="track.external_urls.spotify" class="col my-0">Listen on Spotify</a>
+      </div>
     </div>
 
     <div class="col-xl-8 offset-xl-2">
