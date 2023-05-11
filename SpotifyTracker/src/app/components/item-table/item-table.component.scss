@@ -9,10 +9,6 @@ table thead p {
   font-size: 1em;
 }
 
-th {
-  position: sticky;
-}
-
 tbody tr {
   cursor: pointer;
 }
@@ -23,23 +19,14 @@ img {
 }
 
 p {
-  font-size: clamp(14px, 3vw, 20px) !important;
+  font-size: clamp(14px, 3vw, 18px) !important;
 }
 
 thead p {
-  font-size: clamp(16px, 3vw, 20px) !important;
-}
-
-.mw-50 {
-  // max-width: 50px;
+  font-size: clamp(16px, 3vw, 18px) !important;
 }
 
 table {
   border: 3px solid $spotify-green;
   border-radius: 10px;
-}
-
-td {
-  max-width: 25vh;
-  text-overflow: ellipsis;
 }

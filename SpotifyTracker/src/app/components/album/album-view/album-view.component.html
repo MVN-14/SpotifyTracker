@@ -1,19 +1,13 @@
-<div
-  class="text-white container-fluid px-0 px-sm-5 p-lg-5 pt-2"
-  *ngIf="album$ | async as album"
->
+<div class="text-white container-fluid px-0 px-sm-5 p-lg-5 pt-2" *ngIf="album$ | async as album">
   <h2 class="text-center pt-md-4 heading">{{ album.name }}</h2>
   <div class="row m-0">
-    <div
-      class="col-12 col-lg-6 offset-lg-1 offset-xl-2 col-xl-5 p-0 text-center pt-2"
-    >
+    <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2 col-xl-5 p-0 text-center pt-2">
       <img [src]="album.images[0].url" />
     </div>
     <div class="col">
       <div class="row pt-3">
         <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end">Artist:</label>
-        <a href="/album/{{ album.artists[0].name }}" class="col my-0"
-          >{{ album.artists[0].name }}
+        <a href="/album/{{ album.artists[0].name }}" class="col my-0">{{ album.artists[0].name }}
         </a>
       </div>
       <div class="row">
@@ -21,16 +15,15 @@
         <p class="col my-0">{{ album.total_tracks }}</p>
       </div>
       <div class="row">
-        <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end"
-          >Popularity:</label
-        >
+        <label class="col-4 col-sm-5 col-lg-4 col-xl-3 text-end">Popularity:</label>
         <p class="col my-0">{{ album.popularity }}</p>
       </div>
     </div>
-
-    <div *ngIf="tracks$ | async as tracks" class="px-0 mx-0 text-center">
-      <h3 class="pt-5">Tracks</h3>
-      <album-tracks [tracks]="tracks"></album-tracks>
+    <div class="col-xl-8 offset-xl-2 text-center">
+      <div *ngIf="tracks$ | async as tracks" class="px-0 mx-0 ">
+        <h3 class="pt-5">Tracks</h3>
+        <album-tracks [tracks]="tracks"></album-tracks>
+      </div>
     </div>
   </div>
 </div>

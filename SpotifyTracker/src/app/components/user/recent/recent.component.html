@@ -1,11 +1,8 @@
 <div class="container-fluid px-0 p-lg-5 pt-2">
   <h2 class="text-white text-center pt-md-4 heading">Your Recent Tracks</h2>
-  <div
-    *ngIf="recentlyPlayedTracks$ | async as recentlyPlayedTracks"
-    class="pt-3 px-md-5"
-  >
-    <play-history-table
-      [playHistorys]="recentlyPlayedTracks"
-    ></play-history-table>
+  <div *ngIf="recentlyPlayedTracks$ | async as recentlyPlayedTracks" class="pt-3 px-md-5">
+    <div class="row">
+      <play-history-table class="col-xl-8 offset-xl-2" [playHistorys]="recentlyPlayedTracks"></play-history-table>
+    </div>
   </div>
 </div>

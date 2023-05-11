@@ -1,18 +1,12 @@
-<div
-  class="text-white container-fluid px-0 px-sm-5 p-lg-5 pt-2"
-  *ngIf="artist$ | async as artist"
->
+<div class="text-white container-fluid px-0 px-sm-5 p-lg-5 pt-2" *ngIf="artist$ | async as artist">
   <h2 class="text-center pt-md-4 heading">{{ artist.name }}</h2>
   <div class="row m-0">
     <div class="col-12 text-center">
       <img [src]="artist.images[0].url" />
     </div>
-    <div
-      *ngIf="relatedArtists$ | async as relatedArtists"
-      class="px-0 mx-0 text-center"
-    >
+    <div *ngIf="relatedArtists$ | async as relatedArtists" class="row px-0 mx-0 text-center">
       <h3 class="pt-5">Artists Related To {{ artist.name }}</h3>
-      <artist-table [artists]="relatedArtists"></artist-table>
+      <artist-table class="col-xl-8 offset-xl-2" [artists]="relatedArtists"></artist-table>
     </div>
   </div>
 </div>

@@ -8,22 +8,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let tableRow of tableRows" (click)="onClick(tableRow)">
-      <td
-        *ngFor="let tableData of tableRow.data"
-        [ngSwitch]="tableData.element"
-        class="text-start p-0 m-0"
-        [ngClass]="{ 'mw-50': tableData.element === 'img' }"
-      >
-        <img
-          class="p-0 m-0"
-          *ngSwitchCase="'img'"
-          [src]="tableData.src"
-          height="50px"
-          width="50px"
-        />
+      <td *ngFor="let tableData of tableRow.data" [ngSwitch]="tableData.element" class="text-start p-0 m-0"
+        [ngClass]="{ 'mw-50': tableData.element === 'img' }">
+        <img class="p-0 m-0" *ngSwitchCase="'img'" [src]="tableData.src" height="50px" width="50px" />
         <a class="p-2" *ngSwitchCase="'a'" [href]="tableData.href">{{
           tableData.text
-        }}</a>
+          }}</a>
         <p class="p-2" *ngSwitchCase="'p'">{{ tableData.text }}</p>
       </td>
     </tr>
