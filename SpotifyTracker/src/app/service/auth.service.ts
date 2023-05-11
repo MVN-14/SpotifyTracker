@@ -19,7 +19,6 @@ export class AuthService {
         'scope',
         'user-follow-read user-read-private user-read-email user-top-read user-read-recently-played user-read-playback-position app-remote-control streaming user-modify-playback-state user-read-playback-state user-read-currently-playing'
       );
-
     return `https://accounts.spotify.com/authorize${params.toString()}`;
   }
 }
