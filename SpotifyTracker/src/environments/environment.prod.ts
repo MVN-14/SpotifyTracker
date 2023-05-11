@@ -1,4 +1,4 @@
-const API_URL: string = 'spotifytracker-api-git-dev-mvn-14.vercel.app';
+const API_URL: string = 'https://spotifytracker-api-git-dev-mvn-14.vercel.app';
 
 export const environment = {
   production: true,
