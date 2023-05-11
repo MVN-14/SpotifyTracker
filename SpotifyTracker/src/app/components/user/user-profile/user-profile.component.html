@@ -1,8 +1,6 @@
 <div class="container-fluid p-lg-5 pt-2">
   <div *ngIf="userProfile$ | async as userProfile" class="row text-white pt-1">
-    <div
-      class="text-white d-flex justify-content-center align-items-center mb-3"
-    >
+    <div class="text-white d-flex justify-content-center align-items-center mb-3">
       <img class="me-2 rounded" [src]="userProfile?.photo_url" height="50rem" />
       <div class="">
         <h2 class="mb-0">{{ userProfile?.display_name }}</h2>
@@ -29,9 +27,9 @@
         <label class="col-6 text-end">Explicit:</label>
         <p class="col my-0">
           {{
-            userProfile?.explicit_content?.filter_enabled
-              ? "Disabled"
-              : "Enabled"
+          userProfile?.explicit_content?.filter_enabled
+          ? "Disabled"
+          : "Enabled"
           }}
         </p>
       </div>
@@ -42,23 +40,16 @@
     </div>
 
     <div class="text-center">
-      <a
-        class="collapseToggle"
-        href="#extendedDetails"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#extendedDetails"
-        aria-expanded="true"
-        aria-controls="extendedDetails"
-        (click)="expanded = !expanded"
-      >
+      <a class="collapseToggle" href="#extendedDetails" type="button" data-bs-toggle="collapse"
+        data-bs-target="#extendedDetails" aria-expanded="true" aria-controls="extendedDetails"
+        (click)="expanded = !expanded">
         {{ expanded ? "hide profile" : "show profile" }}
       </a>
     </div>
 
-    <h2 class="pt-5 ps-md-5">Your Followed Artists</h2>
+    <h2 class="pt-5 ps-md-5 text-center">Your Followed Artists</h2>
 
-    <div class="col text-center px-md-5">
+    <div class="col-xl-8 offset-xl-2 text-center px-md-5">
       <div *ngIf="artists$ | async as artists">
         <artist-table [artists]="artists"></artist-table>
       </div>
