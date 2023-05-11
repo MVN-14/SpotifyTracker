@@ -17,7 +17,6 @@ import { ArtistViewComponent } from './components/artist/artist-view/artist-view
 import { TopTracksComponent } from './components/artist/top-tracks/top-tracks.component';
 import { AlbumTableComponent } from './components/album/album-table/album-table.component';
 import { ArtistAlbumsComponent } from './components';
-// import { TrackRecommendationsComponent } from './components/track/track-recommendations/track-recommendations.component';
 import { AlbumViewComponent } from './components/album/album-view/album-view.component';
 import { ItemTableComponent } from './components/item-table/item-table.component';
 import { PlayHistoryTableComponent } from './components/track/play-history-table/play-history-table.component';
@@ -39,7 +38,6 @@ import { AlbumTracksComponent } from './components/track/album-tracks/album-trac
     TopTracksComponent,
     AlbumTableComponent,
     ArtistAlbumsComponent,
-    // TrackRecommendationsComponent,
     AlbumViewComponent,
     ItemTableComponent,
     PlayHistoryTableComponent,

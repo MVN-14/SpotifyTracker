@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <a
-          #home
+          *ngIf="isLoggedIn"
           [ngClass]="{ active: activeNav === 'home' }"
           class="nav-link"
           aria-current="page"
@@ -24,7 +24,7 @@
           >Home</a
         >
         <a
-          #profile
+          *ngIf="isLoggedIn"
           [ngClass]="{ active: activeNav === 'profile' }"
           class="nav-link"
           aria-current="page"
@@ -32,7 +32,7 @@
           >Profile</a
         >
         <a
-          #topItems
+          *ngIf="isLoggedIn"
           [ngClass]="{ active: activeNav === 'top-items' }"
           class="nav-link"
           aria-current="page"
@@ -40,7 +40,7 @@
           >Top Items</a
         >
         <a
-          #recent
+          *ngIf="isLoggedIn"
           [ngClass]="{ active: activeNav === 'recent' }"
           class="nav-link"
           aria-current="page"
@@ -48,7 +48,6 @@
           >Recent</a
         >
         <a
-          #recent
           [ngClass]="{ active: activeNav === 'login' }"
           class="nav-link"
           aria-current="page"

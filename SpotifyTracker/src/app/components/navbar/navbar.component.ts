@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  isLoggedIn: boolean = false;
   activeNav?: string;
 
   ngOnInit(): void {
     const url: string = window.location.href;
+    this.isLoggedIn = !!sessionStorage.getItem('access_token');
 
     if (url.includes('home')) {
       this.activeNav = 'home';

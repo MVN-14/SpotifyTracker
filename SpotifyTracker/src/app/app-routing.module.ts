@@ -11,7 +11,6 @@ import {
   ArtistViewComponent,
   AlbumViewComponent,
 } from './components';
-import { authGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -26,37 +25,30 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
-    canActivate: [authGuard],
   },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [authGuard],
   },
   {
     path: 'top-items',
     component: TopItemsComponent,
-    canActivate: [authGuard],
   },
   {
     path: 'recent',
     component: RecentComponent,
-    canActivate: [authGuard],
   },
   {
     path: 'track/:id',
     component: TrackViewComponent,
-    canActivate: [authGuard],
   },
   {
     path: 'artist/:id',
     component: ArtistViewComponent,
-    canActivate: [authGuard],
   },
   {
     path: 'album/:id',
     component: AlbumViewComponent,
-    canActivate: [authGuard],
   },
 ];
 
