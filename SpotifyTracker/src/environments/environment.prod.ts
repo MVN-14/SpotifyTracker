@@ -1,8 +1,8 @@
-const API_URL: string = 'https://spotifytracker-api.vercel.app';
+const API_URL: string = 'https://spotify-tracker-git-dev-mvn-14.vercel.app/';
 
 export const environment = {
   production: true,
   apiUrl: API_URL,
-  clientID: '902290fda70b44e38075ac4968459dd7',
+  clientID: '1a486698eaf54d9397a0362e816849a3',
   redirectUri: `${API_URL}'/login/callback`,
 };
