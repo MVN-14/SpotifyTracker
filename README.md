@@ -16,3 +16,4 @@ This is a basic demonstration of utilizing the Spotify API using Angular and Nod
 
 - Enhanced Playlist Creator/Editor
 - Playlists creation based on song reccomendations
+
