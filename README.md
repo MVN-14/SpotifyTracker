@@ -12,6 +12,7 @@ This is a basic demonstration of utilizing the Spotify API using Angular and Nod
 - View your top Artists and Tracks varying from short-term, medium-term, and long-term
 - View track recomendations based on your top tracks
 
+
 ## Planned for the future
 
 - Enhanced Playlist Creator/Editor
